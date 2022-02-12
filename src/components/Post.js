@@ -14,7 +14,7 @@ const Post =(props)=>{
                         <p>{props.title}</p>
                     </Grid>
                 </Grid>
-        </React.Fragment>
+        </React.Fragment>   
     )
 }
 

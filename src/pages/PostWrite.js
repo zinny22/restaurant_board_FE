@@ -123,6 +123,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Upload from "../shared/Upload";
+import { history } from "../redux/configureStore";
 
 const PostWrite = (props) => {
     const dispatch = useDispatch();
@@ -196,7 +197,11 @@ const PostWrite = (props) => {
 
             </Grid>
             <Grid padding="16px">
-                <Button text="게시글 작성" _onClick={addPost}></Button>
+                <Button text="게시글 작성" _onClick={()=>{
+                    addPost()
+                    history.push('/')
+                    }}>           
+                    </Button>
             </Grid>
 
 

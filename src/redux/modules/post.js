@@ -21,7 +21,7 @@ const initialState = {
 export default handleActions(
     {
         [GET_POST]: (state, action) => produce(state, (draft) => {
-
+                console.log(action.payload.post_list)
         }),
 
         [ADD_POST]: (state, action) => produce(state, (draft) => {
@@ -41,6 +41,7 @@ export default handleActions(
 )
 
 const actionCreators = {
+
     getPost,
     addPost,
 }
