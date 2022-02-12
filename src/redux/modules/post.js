@@ -42,11 +42,7 @@ const addPostFB = (title, location, comment, preview) => {
 export default handleActions(
     {
         [GET_POST]: (state, action) => produce(state, (draft) => {
-<<<<<<< HEAD
-            console.log(action.payload.post_list)
-=======
                 draft.list=action.payload.post_list
->>>>>>> 9ee60080c4ada74f029b2851d832dc91783534e6
         }),
 
         [ADD_POST]: (state, action) => produce(state, (draft) => {

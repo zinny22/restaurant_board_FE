@@ -5,9 +5,7 @@ import PostWrite from "../pages/PostWrite";
 import "./App.css";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-// import PostDetail from "./pages/PostDetail";
-
-
+import PostDetail from "../pages/PostDetail";
 import Header from "../components/Header";
 
 // import {Grid, Button} from "./elements";
