@@ -1,11 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import PostList from '../pages/PostList'
+import './App.css';
 // import Login from './pages/Login';
 // import Register from './pages/Register';
 // import PostDetail from "./pages/PostDetail";
 
-// import Header from './components/Header';
+import Header from '../components/Header';
 // import PostWrite from './pages/postWrite';
 // import {Grid, Button} from "./elements";
 import { ConnectedRouter } from "connected-react-router";
@@ -26,8 +27,8 @@ function App() {
 
   return (
     <React.Fragment>
-      {/* <Grid>
-      <Header></Header> */}
+       {/* <Grid> */}
+      <Header></Header>
       <ConnectedRouter history={history}>
           <Route path="/" exact component={PostList} />
           {/* <Route path="/login" exact component={Login} />
