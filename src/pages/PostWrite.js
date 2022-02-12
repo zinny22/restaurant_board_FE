@@ -139,6 +139,7 @@ const PostWrite = (props) => {
 
     return (
         <React.Fragment>
+            <Grid width ="50%" margin="auto">
             <Grid padding="16px">
                 <Text margin="0px" size="36px" bold>
                     게시글 작성
@@ -153,58 +154,61 @@ const PostWrite = (props) => {
                 </Grid>
             </Grid>
 
-            <Grid padding="10px">
+            <Grid>
                 <Style>
                     <Image
                         margin="10px 0px 0px 0px"
                         shape="rectangle"
-                        width="100%"
+                        width="50%"
                         src={preview ? preview : "http://via.placeholder.com/400x300"}
                     />
                 </Style>
             </Grid>
 
             <Grid>
-                <input
+                <Input
                     value={title}
                     onChange={(e) => {
                         setTitle(e.target.value)
                     }}
-                    label="title"
-                    placeholder="음식점 이름"
+                    label="가게 이름"
+                    placeholder="가게 이름을 적어주세요"
 
                 />
             </Grid>
             <Grid>
-                <input
+                <Input
                     value={location}
                     onChange={(e) => {
                         setLocation(e.target.value)
                     }}
-                    label="location"
-                    placeholder="위치"
+                    label="위치"
+                    placeholder="위치를 적어주세요"
                 />
 
             </Grid>
             <Grid>
-                <input
+                <Input
                     value={comment}
                     onChange={(e) => {
                         setComment(e.target.value)
                     }}
-                    label="comment"
-                    placeholder="한줄평"
+                    label="한줄 평"
+                    placeholder="한줄 평을 적어주세요"
                 />
 
             </Grid>
-            <Grid padding="16px">
-                <Button text="게시글 작성" _onClick={()=>{
+          
+            <Grid padding="16px" is_end >
+                <Button height="45px" width="20%" text="게시글 작성" _onClick={()=>{
                     addPost()
                     history.push('/')
                     }}>           
                     </Button>
             </Grid>
 
+            </Grid>
+          
 
         </React.Fragment>
     );

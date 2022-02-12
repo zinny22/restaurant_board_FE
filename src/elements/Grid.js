@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const Grid = (props) => {
-  const { is_flex, width, margin, padding, bg, children, center,_onClick, border,border_radius,box_shadow} = props;
+  const { is_end,is_flex, width, margin, padding, bg, children, center,_onClick, border,border_radius,box_shadow} = props;
 
   const styles = {
       is_flex: is_flex,
+      is_end: is_end,
       width: width,
       margin: margin,
       padding: padding,
@@ -26,6 +27,7 @@ const Grid = (props) => {
 Grid.defaultProps = {
   children: null,
   is_flex: false,
+  is_end: false,
   width: "100%",
   padding: false,
   margin: false,
@@ -49,6 +51,10 @@ const GridBox = styled.div`
   ${(props) =>
     props.is_flex
       ? `display: flex; align-items: center; justify-content: space-between; `
+      : ""}
+  ${(props) =>
+    props.is_end
+      ? `display: flex; align-items: center; justify-content: flex-end; `
       : ""}
   ${(props)=> (props.center?`text-align : center`:"")}
   ${(props)=>(props.border? `border: ${props.border};` : "")}
