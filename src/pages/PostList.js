@@ -1,14 +1,17 @@
 import React from "react";
+import { useState } from "react";
+import Post from "../components/Post"
+import {useSelector} from "react-redux";
 import { history } from "../redux/configureStore";
 
-const PostList = () => {
+const PostList = (props) => {
+    const post_list = useSelector((state)=>state.post.list)
     return (
-        <button onClick={()=>{
-            history.push("/")
-            console.log("연결됐다 ㅋㅋ")
-        }}>
-            ㅋㅋ
-        </button>
+        <React.Fragment>
+            {post_list.map((p,idx)=>{
+                return <Post key={idx} {...p} onClick ={()=>{history.push('/')}}/>
+            })}
+        </React.Fragment>
     )
 }
 
