@@ -8,16 +8,17 @@ import { actionCreators as postActions } from "../redux/modules/post";
 
 const PostList = (props) => {
     const dispatch = useDispatch();
-    const post_list = useSelector((state)=>state.post.list)
+    const post_list = useSelector((state)=>state.post.list);
+    const {history} =props
 
-    // React.useEffect(() => {
-    //        dispatch(postActions.getPost(post_list));
-    // }, []);
+    React.useEffect(() => {
+           dispatch(postActions.getPost(post_list));
+    }, []);
   
     return (
         <React.Fragment>
             {post_list.map((p,idx)=>{
-                return <Post key={idx} {...p} onClick ={()=>{history.push('/')}}/>
+                return <Post key={idx} {...p} onClick ={()=>{history.push(`/getpost/${p.id}`)}}/>
             })}
         </React.Fragment>
     )

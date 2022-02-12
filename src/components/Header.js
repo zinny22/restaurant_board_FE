@@ -47,7 +47,7 @@ const Header = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
                     >
-                        맛있는거 4조
+                      🍰 맛있는거 4조 🍰
                     </Typography>
 
                     <Typography
@@ -56,7 +56,7 @@ const Header = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
-                        맛있는거 4조
+                       🍰 맛있는거 4조 🍰
                     </Typography>
 
                     <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
