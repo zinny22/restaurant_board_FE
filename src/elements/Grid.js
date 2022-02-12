@@ -1,50 +1,61 @@
 import React from "react";
-import styled from "styled-components"
+import styled from "styled-components";
 
-const Grid =(props) =>{
-    const {children, width, margin, padding, bg,borderRadius,is_flex,is_border,size} =props;
+const Grid = (props) => {
+  const { is_flex, width, margin, padding, bg, children, center,_onClick, border,border_radius,box_shadow} = props;
 
-    const styles ={
-        width: width,
-        margin: margin,
-        padding: padding,
-        bg:bg,
-        borderRadius: borderRadius,
-        is_flex:is_flex,
-        is_border:is_border,
-        size: size,
-    }
-     return(
-         <React.Fragment>
-             <GridBox {...styles}>{children}</GridBox>
-         </React.Fragment>
-     )
-}
+  const styles = {
+      is_flex: is_flex,
+      width: width,
+      margin: margin,
+      padding: padding,
+      bg: bg,
+      center: center,
+      border: border,
+      border_radius: border_radius,
+      box_shadow:box_shadow,
 
-Grid.defaultPorps={
-    children :null,
-    width : false,
-    margin: false,
-    padding: false,
-    bg: false,
-    borderRadius : false,
-    is_flex :false,
-    is_border:false,
-    size: false,
-}
+  };
+  return (
+    <React.Fragment>
+      <GridBox {...styles} onClick={_onClick}>{children}</GridBox>
+    </React.Fragment>
+  );
+};
 
-const GridBox = styled.div `
-    box-sizing: border-box;
-    height: 100%;
-    --size :${(props)=>props.size}px;
-    width: var(--size);
-    ${(props=>props.width?`margin:${props.width}`:"")}
-    ${(props=>props.margin?`margin:${props.margin}`:"")}
-    ${(props=>props.padding?`margin:${props.padding}`:"")}
-    ${(props=>props.bg?`margin:${props.bg}`:"")}
-    ${(props)=>props.borderRadius?`border-radius:${props.borderRadius}` :""};
-    ${(props)=>props.is_border?`border:${props.is_border}` :""};
-    ${(props)=>props.is_flex?`display: flex; align-item:center; justify-content:space-between` :""};
-`
+Grid.defaultProps = {
+  children: null,
+  is_flex: false,
+  width: "100%",
+  padding: false,
+  margin: false,
+  bg: false,
+  right: false,
+  _onClick : ()=>{},
+  border: false,
+  border_radius :false,
+  box_shadow :false,
+};
 
-export default Grid
+
+
+const GridBox = styled.div`
+  width: ${(props) => props.width};
+  height: 100%;
+  box-sizing: border-box;
+  ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
+  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
+  ${(props) =>
+    props.is_flex
+      ? `display: flex; align-items: center; justify-content: space-between; `
+      : ""}
+  ${(props)=> (props.center?`text-align : center`:"")}
+  ${(props)=>(props.border? `border: ${props.border};` : "")}
+  ${(props)=>(props.border_radius? `border-radius: ${props.border_radius};` : "")}
+  :hover{
+    ${(props)=>(props.box_shadow? `box-shadow: rgba(246, 136, 67, 0.3) 0px 6px 24px 0px, #b7e4c7 0px 0px 0px 1px;` : "")}
+  }
+`;
+
+export default Grid;
