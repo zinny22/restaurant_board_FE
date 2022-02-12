@@ -1,6 +1,9 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { useSelector } from "react-redux";
+import instance from "../../shared/Request";
+
+
 const GET_POST = "GET_POST";
 const ADD_POST = "ADD_POST"
 
@@ -18,10 +21,28 @@ const initialState = {
     }],
 }
 
+
+// 어떤 미들웨어
+const addPostFB = (title, location, comment, preview) => {
+    return function (dispatch, {history}) {
+
+        // 만들어둔 instance에 보낼 요청 타입과 주소로 요청합니다. 
+        instance.post('/api/addpost/save', // 미리 약속한 주소
+            { title: title, location: location, comment: comment, image_url: preview }, // 서버가 필요로 하는 데이터를 넘겨주고,
+        ).then(function (response) {
+            console.log(response);
+            // alert(response['success']);
+           dispatch((addPost(title, location, comment, preview)))
+        })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+}
 export default handleActions(
     {
         [GET_POST]: (state, action) => produce(state, (draft) => {
-                console.log(action.payload.post_list)
+            console.log(action.payload.post_list)
         }),
 
         [ADD_POST]: (state, action) => produce(state, (draft) => {
@@ -32,8 +53,8 @@ export default handleActions(
                 location: action.payload.location,
                 comment: action.payload.comment,
                 image_url: action.payload.preview,
-              };
-            let post = {..._post}
+            };
+            let post = { ..._post }
             draft.list.unshift(post)
         })
     },
@@ -44,5 +65,6 @@ const actionCreators = {
 
     getPost,
     addPost,
+    addPostFB,
 }
 export { actionCreators };
