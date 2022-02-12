@@ -41,7 +41,6 @@ const Header = () => {
             <Container>
                 <Toolbar disableGutters >
                     <Typography
-                        anchorEl={anchorElNav}
                         onClick={handleCloseNavMenu}
                         variant="h5" //글자크기
                         noWrap
@@ -53,7 +52,7 @@ const Header = () => {
 
                     <Typography
                         variant="h6"
-                        Wrap
+                        noWrap
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
