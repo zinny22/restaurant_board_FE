@@ -26,6 +26,8 @@ export default handleActions(
 
         [ADD_POST]: (state, action) => produce(state, (draft) => {
             const _post = {
+                user_nick: "jin",
+                createDate: "2022-02-11 10:00:00",
                 title: action.payload.title,
                 location: action.payload.location,
                 comment: action.payload.comment,
