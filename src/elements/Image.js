@@ -25,7 +25,7 @@ Image.defaultProps = {
 
 const Images =styled.div`
     --size :${(props)=>props.size}vh;
-    width: var(--size);
+    width: 100%;
     height: var(--size);
     ${(props)=>props.borderRadius?`border-radius:${props.borderRadius}` :""};
     background-image: url("${(props)=>props.src}");

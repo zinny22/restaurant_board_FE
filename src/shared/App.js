@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 // import PostDetail from "./pages/PostDetail";
 
+
 import Header from "../components/Header";
 
 // import {Grid, Button} from "./elements";
@@ -34,7 +35,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/Register" exact component={Register} />
         <Route path="/addpost" exact component={PostWrite} />
-        {/* <Route path="/getpost/:postid" exact component={PostDetail}/> */}
+        {<Route path="/getpost/:postid" exact component={PostDetail}/>}
         {/* 수정을 할때는 write id값이 필요하다 */}
       </ConnectedRouter>
       {/* </Grid> */}
