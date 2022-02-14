@@ -23,7 +23,7 @@ const initialState = {
 // middleware
 const addPostFB = (title, location, comment, preview) => {
     return function (dispatch, getState, { history }) {
-        const getcookie = getCookie("is_login")
+        const is_local = localStorage.getItem("is_login")
         const _post = {
             title: title,
             location: location,
@@ -34,7 +34,7 @@ const addPostFB = (title, location, comment, preview) => {
         // 만들어둔 instance에 보낼 요청 타입과 주소로 요청합니다. 
         instance.post('/api/addpost/save', // 미리 약속한 주소
             { title: title, location: location, comment: comment, image_url: preview }, // 서버가 필요로 하는 데이터를 넘겨주고,
-            instance.defaults.headers.common["Authorization"] = `Bearer ${getcookie}`
+            instance.defaults.headers.common["Authorization"] = `Bearer ${is_local}`
         ).then((res) => {
             console.log(res)
             dispatch(addPost(post))

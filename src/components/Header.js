@@ -15,18 +15,15 @@ import styled from 'styled-components'
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators as postActions } from "../redux/modules/user";
-import { getCookie, setCookie, deleteCookie } from "../shared/cookie";
+
 
 const Header = () => {
     const dispatch = useDispatch()
-    const is_login = useSelector((state) => state.user.is_login);
-    // const is_cookie = getCookie("is_login")
-    // sessionStorage.setItem("token",is_cookie)
-    // const is_session = sessionStorage.getItem("token") ? true : false
-    // console.log(is_session)
+    // const is_login = useSelector((state) => state.user.is_login);
+    const is_local = localStorage.getItem("is_login") ? true : false
+
    
-   
-    const user_nick = useSelector((state) => state.user.user_nick);
+    // const user_nick = useSelector((state) => state.user.user_nick);
   
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -39,7 +36,7 @@ const Header = () => {
     };
 
 
-    if (is_login) {
+    if (is_local) {
         return (
             <AppBar style={{ background: '#f68843' }} position="static">
                 <Container>
@@ -69,7 +66,7 @@ const Header = () => {
                             component="div"
                             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                         >
-                            00님 안녕하세요
+                            
                         </Typography>
 
                         <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
@@ -114,7 +111,7 @@ const Header = () => {
                                 <MenuItem onClick={() => {
                                     handleCloseNavMenu()
                                     dispatch(postActions.logoutDB())
-                                    history.replace("/")
+                                    window.location.reload('/')
                                 }}>
                                     <Typography textAlign="center">로그아웃</Typography>
                                 </MenuItem>
@@ -134,11 +131,10 @@ const Header = () => {
                             </MyButton>
 
                             <MyButton
-
                                 onClick={() => {
                                     handleCloseNavMenu()
                                     dispatch(postActions.logoutDB())
-                                    history.push("/")
+                                    window.location.reload('/')
                                 }}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >로그아웃

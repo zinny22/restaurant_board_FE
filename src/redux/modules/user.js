@@ -80,14 +80,14 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         console.log(action.payload);
-        setCookie('is_login', action.payload.token)
+        const token = action.payload.token
+        localStorage.setItem('is_login', token)
         // draft.user = action.payload.user;
         draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
-        deleteCookie("is_login");
-       
+        localStorage.clear();
         draft.user = null;
         draft.is_login = false;
       }),

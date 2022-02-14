@@ -12,10 +12,10 @@ const instance = axios.create({
 // 그럴 땐 로그인 하고 토큰을 받아왔을 때 넣어줍시다.
 // instance.defaults.headers.common["Authorization"] = USER_TOKEN; 
 
-const is_cookie = getCookie("is_login") ? true : false
-const getcookie = getCookie("is_login") 
-console.log(is_cookie)
-if(is_cookie) {
-	instance.defaults.headers.common["Authorization"] = `Bearer ${getcookie}`
-}
+// const is_cookie = getCookie("is_login") ? true : false
+// const getcookie = getCookie("is_login") 
+// console.log(is_cookie)
+// if(is_cookie) {
+// 	instance.defaults.headers.common["Authorization"] = `Bearer ${getcookie}`
+
 export default instance;
