@@ -40,9 +40,9 @@ const addPostFB = (title, location, comment, preview) => {
             dispatch(addPost(post))
             history.push('/')
         })
-            .catch((error) => {
-                console.log(error);
-            });
+        .catch((error) => {
+            console.log(error);
+        });
     }
 }
 
@@ -59,7 +59,8 @@ const getPostFB = () => {
                 let list = {
                     title: v.title,
                     user_nick: v.user_nick, 
-                    createDate: v.createDate, post_id: v._id
+                    createDate: v.createdDate,
+                    post_id: v._id
                 }
                 post_list.push(list)
             })
