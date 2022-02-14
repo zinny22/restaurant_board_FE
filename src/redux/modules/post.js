@@ -25,18 +25,31 @@ const initialState = {
 // 어떤 미들웨어
 const addPostFB = (title, location, comment,preview) => {
     return function (getState, dispatch, {history}) {
-    
+        // const _user = getState().user.user;
+
+        // const user_info = {
+        //   user_nick: _user.user_nick,
+        //   user_id: _user.token
+        // };
+       
+        const _post = {
+            title: title,
+            location: location,
+            comment: comment,
+            image_url : preview
+        }
         // 만들어둔 instance에 보낼 요청 타입과 주소로 요청합니다. 
         instance.post('/api/addpost/save', // 미리 약속한 주소
             { title: title, location: location, comment: comment, image_url: preview }, // 서버가 필요로 하는 데이터를 넘겨주고,
         ).then(function (response) {
             console.log(response);
-            // alert(response['success']);
-           dispatch((addPost(title, location, comment, preview)))
+        }).then((doc)=>{
+            let post = {..._post, id: doc.id}
+            dispatch((addPost(post)))
         })
-            .catch(function (error) {
-                console.log(error);
-            });
+        .catch(function (error) {
+            console.log(error);
+        });
     }
 }
 export default handleActions(
@@ -45,17 +58,8 @@ export default handleActions(
                 draft.list=action.payload.post_list
         }),
 
-        [ADD_POST]: (state, action) => produce(state, (draft) => {
-            const _post = {
-                user_nick: "jin",
-                createDate: "2022-02-11 10:00:00",
-                title: action.payload.title,
-                location: action.payload.location,
-                comment: action.payload.comment,
-                image_url: action.payload.preview,
-            };
-            let post = { ..._post }
-            draft.list.unshift(post)
+        [ADD_POST]: (state, action) => produce(state, (draft) => {  
+            draft.list.unshift(action.payload.post);
         })
     },
     initialState
