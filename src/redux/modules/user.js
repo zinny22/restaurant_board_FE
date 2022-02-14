@@ -11,7 +11,7 @@ const SET_USER = "SET_USER";
 // action creators
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
-const setUser = createAction(SET_USER, (user) => ({ user }));
+const setUser = createAction(SET_USER, (id, pwd) => ({ id, pwd }));
 
 // initialState
 const initialState = {
@@ -19,30 +19,12 @@ const initialState = {
   is_login: false,
 };
 
+const loginDB = (id ,pwd) => {
+  return function (dispatch, getState, {history}) {
+    dispatch(setUser(id, pwd))
+  }
+}
 
-const loginDB = (id, password) => {
-  return function (dispatch, getState, { history }) {
-    
-    instance
-      .post("/api/login", { user_id: id, user_pwd: password })
-      .then((res) => {
-        alert(res.data.success);
-        const accessToken = res.data.token;
-        dispatch(
-          setUser(
-            accessToken
-          )
-        );
-        
-        //쿠키에 토큰 저장
-        setCookie("is_login", `${accessToken}`);
-        document.location.href = "/";
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-};
 
 //회원가입 API
 const signUpDB = (id, nickname, password, confirmpwd) => {
@@ -95,8 +77,8 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         console.log(action.payload)
-        draft.user = action.payload.user;
-        draft.is_login = true;
+        // draft.user = action.payload.user;
+        // draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {

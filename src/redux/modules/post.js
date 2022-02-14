@@ -62,7 +62,6 @@ const getPostFB = () => {
                     createDate: v.createdDate,
                     post_id: v._id,
                     image_url: v.image_url}
-                    
                 post_list.push(list)
             })
             console.log(post_list)
