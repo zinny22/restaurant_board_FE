@@ -1,14 +1,13 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { useSelector } from "react-redux";
 import instance from "../../shared/Request";
 
 
 const GET_POST = "GET_POST";
 const ADD_POST = "ADD_POST"
 
-const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
-const addPost = createAction(ADD_POST, (title, location, comment, preview) => ({ title, location, comment, preview }));
+const getPost = createAction(GET_POST, (ll) => ({ ll }));
+const addPost = createAction(ADD_POST, (post) => ({ post }));
 
 const initialState = {
     list: [{
@@ -21,54 +20,58 @@ const initialState = {
     }],
 }
 
-
-// 어떤 미들웨어
-const addPostFB = (title, location, comment,preview) => {
-    return function (getState, dispatch, {history}) {
-        // const _user = getState().user.user;
-
-        // const user_info = {
-        //   user_nick: _user.user_nick,
-        //   user_id: _user.token
-        // };
-       
-        const _post = {
-            title: title,
-            location: location,
-            comment: comment,
-            image_url : preview
-        }
-        // 만들어둔 instance에 보낼 요청 타입과 주소로 요청합니다. 
-        instance.post('/api/addpost/save', // 미리 약속한 주소
-            { title: title, location: location, comment: comment, image_url: preview }, // 서버가 필요로 하는 데이터를 넘겨주고,
-        ).then(function (response) {
-            console.log(response);
-        }).then((doc)=>{
-            let post = {..._post, id: doc.id}
-            dispatch((addPost(post)))
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+// middleware
+const addPostFB = (title, location, comment, preview) => {
+    return function(dispatch, getState, {history}) {
+     
+        //    const _post = {
+    //         title: title,
+    //         location: location,
+    //         comment: comment,
+    //         image_url: preview,
+    //     }
+        
+    //     let post = {..._post}
+    //     // 만들어둔 instance에 보낼 요청 타입과 주소로 요청합니다. 
+    //     instance.post('/api/addpost/save', // 미리 약속한 주소
+    //         {title: title, location: location, comment: comment, image_url: preview}, // 서버가 필요로 하는 데이터를 넘겨주고,
+    //     ).then((res) => {
+    //         console.log(res)
+    //         dispatch(addPost(post))
+    //     })
+    //     .catch((error) => {
+    //         console.log(error);
+    //     });
     }
 }
+
+const getPostFB = () => {
+    return function(dispatch, getState, {history}) {
+        const ll = "ll"
+        console.log(ll)
+        dispatch(getPost(ll))
+    }
+}
+
 export default handleActions(
     {
         [GET_POST]: (state, action) => produce(state, (draft) => {
-                draft.list=action.payload.post_list
+            console.log(action.payload)
+            draft.list=action.payload.post_list
         }),
 
-        [ADD_POST]: (state, action) => produce(state, (draft) => {  
-            draft.list.unshift(action.payload.post);
+        [ADD_POST]: (state, action) => produce(state, (draft) => {
+            console.log(action.payload)
+            // draft.list.unshift(action.payload.post);
         })
     },
     initialState
 )
 
 const actionCreators = {
-
     getPost,
     addPost,
+    getPostFB,
     addPostFB,
 }
 export { actionCreators };
