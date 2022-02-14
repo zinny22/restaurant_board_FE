@@ -60,7 +60,8 @@ const getPostFB = () => {
                     title: v.title,
                     user_nick: v.user_nick, 
                     createDate: v.createdDate,
-                    post_id: v._id
+                    post_id: v._id,
+                    image_url:v.image_url,
                 }
                 post_list.push(list)
             })

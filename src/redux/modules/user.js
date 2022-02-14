@@ -154,7 +154,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import instance from "../../shared/Request";
-import { getCookie, setCookie, deleteCookie } from "../../shared/Cookie";
+import { getCookie, setCookie, deleteCookie } from "../../shared/cookie";
 
 // actions
 const LOG_OUT = "LOG_OUT";
