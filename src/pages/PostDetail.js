@@ -3,8 +3,6 @@ import { Grid, Image, Button, Text, Input } from "../elements/Index";
 import { useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { useSelector } from "react-redux";
-import PostD from "../components/PostD";
-import Upload from "../shared/Upload";
 import styled from "styled-components";
 
 
@@ -19,10 +17,10 @@ const PostDetail = (props) => {
   if(post_id){
     return (
       <React.Fragment>
-        <Grid width="80%" margin="auto" padding="16px">
+        <Grid width="40%" margin="30px auto" padding="16px" border ="1px solid #f68843" border_radius="10px">
           <Grid is_flex padding="16px">
-            <Text >{_post.user_nick}</Text>
-            <Text color="gray">{_post.createDate}</Text>
+            <Text size="25px">{_post.user_nick}</Text>
+            <Text color="gray" size="16px">{_post.createDate.slice(0,10)}</Text>
           </Grid>
           <Grid>
             <Style>
@@ -44,14 +42,14 @@ const PostDetail = (props) => {
 
           <Grid padding="16px 0px" is_flex>
             <Button
-              height="100"
+              height="50px"
               width="20%"
               text="게시글 수정"
               _onClick={()=>{
                 dispatch(postActions.editPost)
               }}></Button>
             <Button
-              height="45px"
+              height="50px"
               width="20%"
               text="게시글 삭제"
               _onClick={()=>{dispatch(postActions.deletePostFB(_post.post_id))}}
@@ -66,8 +64,6 @@ const PostDetail = (props) => {
 
 const Style = styled.div`
   width: 100%;
-  minHeight: 150px;
-  boxSizing: border-box;
 `
 
 export default PostDetail;

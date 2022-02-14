@@ -19,23 +19,19 @@ const PostWrite = (props) => {
 
     return (
         <React.Fragment>
-            <Grid width ="50%" margin="auto">
+            <Grid width="50%" margin="30px auto" padding="16px" border ="1px solid #f68843" border_radius="10px">
             <Grid padding="16px">
-                <Text margin="0px" size="36px" bold>
+                <Text margin="0px" size="36px" bold center>
                     게시글 작성
                 </Text>
             </Grid>
             <Upload />
-            <Grid>
-                <Grid padding="16px">
-                    <Text margin="0px" size="24px" bold>
-                        미리보기
-                    </Text>
-                </Grid>
-            </Grid>
 
             <Grid>
                 <Style>
+                <Text margin="0px" size="24px" >
+                        미리보기
+                </Text>
                     <Image
                         margin="10px 0px 0px 0px"
                         shape="rectangle"

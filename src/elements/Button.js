@@ -33,7 +33,8 @@ Button.defaultProps = {
 const MyButton = styled.button`
   width: ${(props) => props.width};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-  background: linear-gradient(45deg, #F9D893 30%, #F6BB43 90%);
+  /* background: linear-gradient(45deg, #F9D893 30%, #F6BB43 90%); */
+  background-color: #f68843;
   border: 0;
   border-radius: 3px;
   box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
