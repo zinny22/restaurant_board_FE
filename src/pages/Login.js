@@ -84,13 +84,34 @@
 
 import React from "react";
 import { Text, Input, Grid, Button } from "../elements/Index";
-import styled from "styled-components";
 import { useState } from "react";
 import { history } from "../redux/configureStore";
+import { useDispatch } from "react-redux";
+import { emailCheck } from "../shared/Common";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const Login = () => {
+  const dispatch = useDispatch();
+
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
+
+  const login = () => {
+    console.log(id, pwd);
+
+    if (id === "" || pwd === "") {
+      window.alert("아이디 혹은 비밀번호가 공란입니다! 입력해주세요!");
+      return;
+    }
+
+    if (!emailCheck(id)) {
+      window.alert("이메일 형식이 맞지 않습니다!");
+      return;
+    }
+
+    dispatch(userActions.loginDB(id, pwd));
+  };
+
   return (
     <React.Fragment>
       <Grid width="60vw" margin="auto" padding="16px">
@@ -122,6 +143,7 @@ const Login = () => {
             text="로그인 하기"
             _onClick={(e) => {
               console.log("로그인 완료!");
+              login();
             }}
           />
         </Grid>
@@ -137,9 +159,5 @@ const Login = () => {
     </React.Fragment>
   );
 };
-
-const MyStyled = styled.div`
-  border-radius: 20px;
-`;
 
 export default Login;
