@@ -19,6 +19,7 @@ import { actionCreators as postActions } from "../redux/modules/user";
 const Header = () => {
     const dispatch = useDispatch()
     const is_login = useSelector((state) => state.user.is_login);
+    const user_nick = useSelector((state) => state.user.user_nick);
     console.log(is_login)
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -61,14 +62,14 @@ const Header = () => {
                        🍰 맛있는거 4조 🍰
                     </Typography>
                     
-                    {/* <Typography
+                    <Typography
                         variant="h6"
                         noWrap
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
                        `${user_nick}님 안녕하세요`
-                    </Typography> */}
+                    </Typography>
 
                     <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
                         {/* md가 flex였다가 960 이하로 작아지면 none! xs 0px 이상부터는 flex가 적용! */}

@@ -21,6 +21,8 @@ const initialState = {
 
 const loginDB = (id ,pwd) => {
   return function (dispatch, getState, {history}) {
+    localStorage.setItem("안녕", "ㅎㅇ")
+    setCookie("안녕", "ㅎㅇ")
     dispatch(setUser(id, pwd))
   }
 }
