@@ -10,20 +10,20 @@ const Upload = (props) => {
     const fileInput = React.useRef();
 
     const selectFile = (e) => {
-      console.log(e.target.files[0])
-      if ( /\.(jpe?g|png|gif)$/i.test(e.name) ) {
+    
         const reader = new FileReader();
-       
         const file = e.target.files[0];
-        reader.readAsDataURL(file);
-
+        
+        reader.readAsDataURL(file)
+     
+        // reader.readAsArrayBuffer(file)
         reader.onloadend = () => {
- 
+          // reader.result는 파일의 컨텐츠(내용물)입니다!
+          console.log(reader.result)
           dispatch(imageActions.setPreview(reader.result));
         };
-      }
-      
     };
+
 
       return (
         <React.Fragment>
