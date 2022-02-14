@@ -4,10 +4,14 @@ import instance from "../../shared/Request";
 import { getCookie, setCookie, deleteCookie } from "../../shared/cookie";
 
 const GET_POST = "GET_POST";
-const ADD_POST = "ADD_POST"
+const ADD_POST = "ADD_POST";
+const DELETE_POST ="DELETE_POST";
+const EDIT_POST ="EDIT_POST";
 
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 const addPost = createAction(ADD_POST, (post) => ({ post }));
+const deletePost = createAction(DELETE_POST, (post_index)=>({post_index}))
+const editPost = createAction(EDIT_POST,(post_id,post)=>({post_id,post}))
 
 const initialState = {
     list: [{
@@ -48,9 +52,8 @@ const addPostFB = (title, location, comment, preview) => {
 
 const getPostFB = () => {
     return function (dispatch, getState, { history }) {
-        instance.get('/api/main', {
-
-        }).then(function (response) {
+        instance.get('/api/main', {})
+        .then(function (response) {
             console.log(response.data.response)
             const postDB = response.data.response
             console.log(postDB)
@@ -61,7 +64,10 @@ const getPostFB = () => {
                     user_nick: v.user_nick, 
                     createDate: v.createdDate,
                     post_id: v._id,
-                    image_url: v.image_url}
+                    image_url:v.image_url,
+                    comment:v.comment,
+                    location:v.location
+                }
                 post_list.push(list)
             })
             console.log(post_list)
@@ -70,6 +76,23 @@ const getPostFB = () => {
             .catch(function (error) { console.log(error) })
     }
 }
+
+const deletePostFB =(post_id=null)=>{
+    return function(dispatch, getState,{history}){
+        const _post_idx = getState().post.list.findIndex((p)=>p.id===post_id)
+        instance.delete(`/api/getpost/delete/${post_id}`,{},
+        )
+        .then(function(response){
+            console.log(response)
+            dispatch(deletePost(_post_idx))
+            history.push('/')
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+    }
+}
+
+
 
 export default handleActions(
     {
@@ -80,6 +103,12 @@ export default handleActions(
 
         [ADD_POST]: (state, action) => produce(state, (draft) => {
             draft.list.unshift(action.payload.post);
+        }),
+        [DELETE_POST]: (state, action) => produce(state, (draft) => {
+            let deleted = draft.list.filter((e,i)=>{
+                return (parseInt(action.payload._post_idx)!==i)
+            })
+            draft.list=deleted
         })
     },
     initialState
@@ -90,5 +119,7 @@ const actionCreators = {
     addPost,
     getPostFB,
     addPostFB,
+    deletePostFB,
+    deletePost
 }
 export { actionCreators };

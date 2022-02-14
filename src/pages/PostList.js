@@ -6,6 +6,7 @@ import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { getCookie } from "../shared/cookie";
+import Grid from "../elements/Grid";
 
 const PostList = (props) => {
     
@@ -22,7 +23,12 @@ const PostList = (props) => {
     return (
         <React.Fragment>
             {post_list.map((p,idx)=>{
-                return <Post key={idx} {...p} onClick ={()=>{history.push(`/getpost/${p.id}`)}}/>
+                // console.log(p)
+                return (
+                    <Grid key={idx} _onClick ={()=>{history.push(`/getpost/${p.post_id}`)}}>
+                        <Post {...p} />
+                    </Grid>
+                )
             })}
         </React.Fragment>
     )

@@ -37,13 +37,11 @@ const AspectOutter = styled.div`
     ${(props) => (props.width ? `width: ${props.width};` : "")}
     max-height: 100%
     display: flex;
-    
     ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
     ${(props) => (props.marginLeft ? `margin-left: ${props.marginLeft};` : "")}
-    @media only screen and (max-width: 500px) {
-        min-width: 70%;
-      }
-`;
+    @media only screen and (max-width: 500px) { min-width: 70%}
+`
+
 const AspectInner = styled.div`
     padding-top: 75%;
     background-image: url("${(props) => props.src}");
@@ -53,7 +51,7 @@ const AspectInner = styled.div`
 
 
 const Images =styled.div`
-    --size :${(props)=>props.size}vh;
+    --size: ${(props)=>props.size}vh;
     width: 100%;
     height: var(--size);
     ${(props)=>props.borderRadius?`border-radius:${props.borderRadius}` :""};

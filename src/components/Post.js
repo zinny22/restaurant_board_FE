@@ -1,7 +1,10 @@
 import React from "react";
-import {Grid, Image} from "../elements/Index"
+import { useDispatch} from "react-redux";
+import {Grid, Image,Button,Text} from "../elements/Index"
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const Post =(props)=>{
+    const dispatch = useDispatch();
     return(
         <React.Fragment>
                 <Grid 
@@ -13,16 +16,16 @@ const Post =(props)=>{
                 padding="16px"
                 bg="white">
                     <Grid is_flex padding="16px">
-                        <p>{props.user_nick}</p>
-                        <p>{props.createDate}</p>
+                        <Text >{props.user_nick}</Text>
+                        <Text color="gray">{props.createDate}</Text>
                     </Grid>
                     <Grid padding="16px">
                         <Image src={props.image_url} size="20" margin="auto"/>
-                        <p>{props.title}</p>
+                        <Text size="32px" center>📍 {props.title}</Text>
                     </Grid>
                 </Grid>
         </React.Fragment>   
     )
 }
-
+// {props.is_me && <Button width="10vh" _onClick={()=>{dispatch(postActions.deletePostFB(props._id))}} >삭제</Button>}
 export default Post;

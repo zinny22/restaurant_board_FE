@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Hi+Melody&display=swap');
+
+*{
+  font-family: 'Do Hyeon', sans-serif;
+}
+
 body {
-  background-color: #ffeedc;
+  background-color: #ffffff;
 }
