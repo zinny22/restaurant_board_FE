@@ -19,9 +19,8 @@ import { actionCreators as postActions } from "../redux/modules/user";
 
 const Header = () => {
     const dispatch = useDispatch()
-    // const is_login = useSelector((state) => state.user.is_login);
+    const is_login = useSelector((state) => state.user.is_login);
     const is_local = localStorage.getItem("is_login") ? true : false
-
    
     // const user_nick = useSelector((state) => state.user.user_nick);
   

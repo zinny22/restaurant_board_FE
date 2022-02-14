@@ -25,7 +25,7 @@ const loginDB = (id, pwd) => {
       alert(res.data.success);
       console.log(res);
       dispatch(setUser(res.data.token));
-      history.push("/");
+      history.replace("/");
     })
    
   };
