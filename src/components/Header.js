@@ -259,11 +259,12 @@ const Header = () => {
 };
 
 const MyButton = styled(Button)`
-  background: linear-gradient(45deg, #F9D893 30%, #F6BB43 90%);
+  /* background: linear-gradient(45deg, #F9D893 30%, #F6BB43 90%); */
+  background-color: white;
   border: 0;
   border-radius: 3px;
   box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
-  color: white;
+  color: #f68843;
   height: 45px;
 `;
 

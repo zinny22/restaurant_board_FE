@@ -9,15 +9,15 @@ const Post =(props)=>{
         <React.Fragment>
                 <Grid 
                 margin="30px auto" 
-                border="4px solid rgb(246, 136, 67)" 
+                border="2px solid rgb(246, 136, 67)" 
                 width="400px" 
                 border_radius="10px"
                 box_shadow
                 padding="16px"
                 bg="white">
                     <Grid is_flex padding="16px">
-                        <Text >{props.user_nick}</Text>
-                        <Text color="gray">{props.createDate}</Text>
+                        <Text size="23px">{props.user_nick}</Text>
+                        <Text color="gray" size="16px">{props.createDate.slice(0,10)}</Text>
                     </Grid>
                     <Grid padding="16px">
                         <Image src={props.image_url} size="20" margin="auto"/>
