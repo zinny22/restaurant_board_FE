@@ -102,12 +102,99 @@
 // export default Register;
 
 import React from "react";
+import { Text, Input, Grid, Button } from "../elements/Index";
+import { history } from "../redux/configureStore";
+import { emailCheck, nicknamecheck, pwdcheck } from "../shared/Common";
 
 const Register = (props) => {
+  const [id, setId] = React.useState("");
+  const [nick, setNick] = React.useState("");
+  const [pwd, setPwd] = React.useState("");
+  const [confirmpwd, setConfirmpwd] = React.useState("");
+
+  const signup = () => {
+    if (id === "" || nick === "" || pwd === "" || confirmpwd === "") {
+      window.alert("이메일, 닉네임, 패스워드를 모두 입력해주세요");
+      return;
+    }
+
+    if (!emailCheck(id)) {
+      window.alert("이메일 형식이 맞지 않습니다!");
+      return;
+    }
+
+    if (!nicknamecheck(nick)) {
+      window.alert("닉네임 형식이 일치하지 않습니다.");
+      return;
+    }
+
+    if (!pwdcheck(pwd)) {
+      window.alert("비밀번호 형식이 일치하지 않습니다.");
+      return;
+    }
+
+    if (pwd !== confirmpwd) {
+      window.alert("패스워드와 패스워드 확인이 일치하지 않습니다!");
+      return;
+    }
+  };
+
   return (
-    <div>
-      <h1>회원가입 페이지</h1>
-    </div>
+    <React.Fragment>
+      <Grid width="60vw" margin="auto" padding="16px">
+        <Text size="20px" bold center>
+          🍟세상에 맛난게 너무 많다! 회원가입 해보자🍟
+        </Text>
+        <Text>아이디</Text>
+
+        <Grid is_flex="true">
+          <Input
+            placeholder="사용할 이메일 주소를 입력해 주세요"
+            type="string"
+            _onChange={(e) => {
+              setId(e.target.value);
+            }}
+          />
+          <Button width="10vw" text="중복확인" />
+        </Grid>
+
+        <Grid is_flex="true">
+          <Input
+            label="닉네임"
+            placeholder="닉네임은 한글, 영문, 숫자만 가능, 2-10자리 가능"
+            type="string"
+            _onChange={(e) => {
+              setNick(e.target.value);
+            }}
+          />
+          <Button margin="0px" width="10vw" text="중복확인" />
+        </Grid>
+
+        <Grid>
+          <Input
+            label="비밀번호"
+            placeholder="사용할 비밀번호를 입력해 주세요"
+            type="password"
+            _onChange={(e) => {
+              setPwd(e.target.value);
+            }}
+          />
+        </Grid>
+        <Grid>
+          <Input
+            label="비밀번호 확인"
+            placeholder="비밀번호를 한번더 확인해주세요"
+            type="password"
+            _onChange={(e) => {
+              setConfirmpwd(e.target.value);
+            }}
+          />
+        </Grid>
+        <Grid margin="30px 0px 16px 0px">
+          <Button text="회원가입하기" _onClick={signup} />
+        </Grid>
+      </Grid>
+    </React.Fragment>
   );
 };
 
