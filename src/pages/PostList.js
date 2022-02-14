@@ -11,6 +11,7 @@ const PostList = (props) => {
     const post_list = useSelector((state)=>state.post.list);
     const {history} =props
     console.log(post_list)
+
     React.useEffect(() => {
            dispatch(postActions.getPostFB());
     }, []);
