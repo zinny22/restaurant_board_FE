@@ -13,9 +13,11 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import styled from 'styled-components'
 import { history } from "../redux/configureStore";
-
+import { useSelector } from 'react-redux';
 
 const Header = () => {
+    const is_login = useSelector((state) => state.user);
+    console.log(is_login)
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {

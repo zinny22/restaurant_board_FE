@@ -61,12 +61,8 @@ const getPostFB = () => {
                     user_nick: v.user_nick, 
                     createDate: v.createdDate,
                     post_id: v._id,
-<<<<<<< HEAD
-                    image_url: v.image_url
-=======
-                    image_url:v.image_url,
->>>>>>> 960338a449de58dbfe617508a6f9afd7f8ca8387
-                }
+                    image_url: v.image_url}
+                    
                 post_list.push(list)
             })
             console.log(post_list)
