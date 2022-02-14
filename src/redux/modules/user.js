@@ -19,12 +19,15 @@ const initialState = {
   is_login: false,
 };
 
-const loginDB = (id ,pwd) => {
-  return function (dispatch, getState, {history}) {
-    dispatch(setUser(id, pwd))
-  }
-}
-
+const loginDB = (id, pwd) => {
+  return function (dispatch, getState, { history }) {
+    instance.post("/api/login", { user_id: id, user_pwd: pwd }).then((res) => {
+      alert(res.data.success);
+      console.log(res);
+    });
+    dispatch(setUser(id, pwd));
+  };
+};
 
 //회원가입 API
 const signUpDB = (id, nickname, password, confirmpwd) => {
@@ -61,8 +64,6 @@ const IDduplcheckDB = (id) => {
   };
 };
 
-
-
 const logoutDB = () => {
   return function (dispatch, getState, { history }) {
     dispatch(logOut());
@@ -76,9 +77,9 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload)
+        console.log(action.payload);
         // draft.user = action.payload.user;
-        // draft.is_login = true;
+        draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {

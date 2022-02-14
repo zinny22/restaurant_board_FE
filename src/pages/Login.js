@@ -13,17 +13,15 @@ const Login = () => {
   const [pwd, setPwd] = useState("");
 
   const login = () => {
+    if (id === "" || pwd === "") {
+      window.alert("아이디 혹은 비밀번호가 공란입니다! 입력해주세요!");
+      return;
+    }
 
-
-    // if (id === "" || pwd === "") {
-    //   window.alert("아이디 혹은 비밀번호가 공란입니다! 입력해주세요!");
-    //   return;
-    // }
-
-    // if (!emailCheck(id)) {
-    //   window.alert("이메일 형식이 맞지 않습니다!");
-    //   return;
-    // }
+    if (!emailCheck(id)) {
+      window.alert("이메일 형식이 맞지 않습니다!");
+      return;
+    }
 
     dispatch(userActions.loginDB(id, pwd));
   };
@@ -60,6 +58,7 @@ const Login = () => {
             _onClick={(e) => {
               console.log("로그인 완료!");
               login();
+              history.push("/");
             }}
           />
         </Grid>
