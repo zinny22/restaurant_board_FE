@@ -83,13 +83,63 @@
 // export default Login;
 
 import React from "react";
+import { Text, Input, Grid, Button } from "../elements/Index";
+import styled from "styled-components";
+import { useState } from "react";
+import { history } from "../redux/configureStore";
 
-const Login = (props) => {
+const Login = () => {
+  const [id, setId] = useState("");
+  const [pwd, setPwd] = useState("");
   return (
-    <div>
-      <h1>로그인 페이지</h1>
-    </div>
+    <React.Fragment>
+      <Grid width="60vw" margin="auto" padding="16px">
+        <Text size="20px" bold center>
+          🥨로그인하고 맛난거 먹으러 가볼까요?🥨
+        </Text>
+        <Grid margin="16px 0px">
+          <Input
+            label="아이디"
+            placeholder="ID를 입력하여 주세요"
+            type="text"
+            _onChange={(e) => {
+              setId(e.target.value);
+            }}
+          />
+        </Grid>
+        <Grid margin="16px 0px">
+          <Input
+            label="비밀번호"
+            placeholder="PWD를 입력하여 주세요"
+            type="password"
+            _onChange={(e) => {
+              setPwd(e.target.value);
+            }}
+          />
+        </Grid>
+        <Grid margin="30px 0px 16px 0px">
+          <Button
+            text="로그인 하기"
+            _onClick={(e) => {
+              console.log("로그인 완료!");
+            }}
+          />
+        </Grid>
+        <Grid margin="16px 0px">
+          <Button
+            text="회원가입 하기"
+            _onClick={() => {
+              history.push("/Register");
+            }}
+          />
+        </Grid>
+      </Grid>
+    </React.Fragment>
   );
 };
+
+const MyStyled = styled.div`
+  border-radius: 20px;
+`;
 
 export default Login;
