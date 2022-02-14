@@ -11,7 +11,7 @@ const SET_USER = "SET_USER";
 // action creators
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
-const setUser = createAction(SET_USER, (id, pwd) => ({ id, pwd }));
+const setUser = createAction(SET_USER, (token) => ({ token }));
 
 // initialState
 const initialState = {
@@ -24,8 +24,10 @@ const loginDB = (id, pwd) => {
     instance.post("/api/login", { user_id: id, user_pwd: pwd }).then((res) => {
       alert(res.data.success);
       console.log(res);
-    });
-    dispatch(setUser(id, pwd));
+      dispatch(setUser(res.data.token));
+      history.push("/");
+    })
+   
   };
 };
 
@@ -78,12 +80,14 @@ export default handleActions(
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         console.log(action.payload);
+        setCookie('is_login', action.payload.token)
         // draft.user = action.payload.user;
         draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
         deleteCookie("is_login");
+       
         draft.user = null;
         draft.is_login = false;
       }),

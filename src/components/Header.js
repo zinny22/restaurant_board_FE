@@ -15,12 +15,19 @@ import styled from 'styled-components'
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators as postActions } from "../redux/modules/user";
+import { getCookie, setCookie, deleteCookie } from "../shared/cookie";
 
 const Header = () => {
     const dispatch = useDispatch()
     const is_login = useSelector((state) => state.user.is_login);
+    // const is_cookie = getCookie("is_login")
+    // sessionStorage.setItem("token",is_cookie)
+    // const is_session = sessionStorage.getItem("token") ? true : false
+    // console.log(is_session)
+   
+   
     const user_nick = useSelector((state) => state.user.user_nick);
-    console.log(is_login)
+  
     const [anchorElNav, setAnchorElNav] = React.useState(null);
 
     const handleOpenNavMenu = (event) => {
@@ -31,107 +38,117 @@ const Header = () => {
         setAnchorElNav(null);
     };
 
-    const signUp = () => {
- 
-        dispatch(postActions.signUpDB());
-    };
 
-   
-
-    if(is_login) {
+    if (is_login) {
         return (
             <AppBar style={{ background: '#f68843' }} position="static">
-            <Container>
-                <Toolbar disableGutters >
-                    <Typography
-                        onClick={handleCloseNavMenu}
-                        variant="h5" //글자크기
-                        noWrap
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
-                    >
-                      🍰 맛있는거 4조 🍰
-                    </Typography>
-
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-                    >
-                       🍰 맛있는거 4조 🍰
-                    </Typography>
-                    
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-                    >
-                       `${user_nick}님 안녕하세요`
-                    </Typography>
-
-                    <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
-                        {/* md가 flex였다가 960 이하로 작아지면 none! xs 0px 이상부터는 flex가 적용! */}
-                        {/* flexGrow: 남은 여백을 비율만큼 채워준다 */}
-                        {/* 작아지면 나오는 메뉴 아이콘 */}
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
+                <Container>
+                    <Toolbar disableGutters >
+                        <Typography
+                            onClick={handleCloseNavMenu}
+                            variant="h5" //글자크기
+                            noWrap
+                            component="div"
+                            sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
                         >
-                            <MenuIcon />
-                        </IconButton>
+                            🍰 맛있는거 4조 🍰
+                        </Typography>
 
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
-                        >                                           
-                            <MenuItem onClick={() => {
-                               handleCloseNavMenu()
-                               signUp()
-                               history.push("/")
-                            }}>
-                                <Typography textAlign="center">로그아웃</Typography>
-                            </MenuItem>
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="div"
+                            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+                        >
+                            🍰 맛있는거 4조 🍰
+                        </Typography>
 
-                        </Menu>
-                    </Box>
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="div"
+                            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+                        >
+                            00님 안녕하세요
+                        </Typography>
 
-                    <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
-                        <MyButton
-                            style={{ marginRight: "5px" }}
-                            onClick={() => {
-                                handleCloseNavMenu()
-                                signUp()
-                                history.push("/")
-                            }}
-                            sx={{ my: 2, color: 'white', display: 'block' }}
-                        >로그아웃
-                        </MyButton>
+                        <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
+                            {/* md가 flex였다가 960 이하로 작아지면 none! xs 0px 이상부터는 flex가 적용! */}
+                            {/* flexGrow: 남은 여백을 비율만큼 채워준다 */}
+                            {/* 작아지면 나오는 메뉴 아이콘 */}
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleOpenNavMenu}
+                                color="inherit"
+                            >
+                                <MenuIcon />
+                            </IconButton>
 
-                    </Box>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorElNav}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'left',
+                                }}
+                                open={Boolean(anchorElNav)}
+                                onClose={handleCloseNavMenu}
+                                sx={{
+                                    display: { xs: 'block', md: 'none' },
+                                }}
+                            >   
+                                   <MenuItem onClick={() => {
+                                    handleCloseNavMenu()
+                                    history.replace("/addpost")
+                                }}>
+                                    <Typography textAlign="center">글쓰기</Typography>
+                                </MenuItem>
+                                <MenuItem onClick={() => {
+                                    handleCloseNavMenu()
+                                    dispatch(postActions.logoutDB())
+                                    history.replace("/")
+                                }}>
+                                    <Typography textAlign="center">로그아웃</Typography>
+                                </MenuItem>
 
-                </Toolbar>
-            </Container>
-        </AppBar>
+                            </Menu>
+                        </Box>
+
+                        <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+                            <MyButton
+                                style={{ marginRight: "5px" }}
+                                onClick={() => {
+                                    handleCloseNavMenu()
+                                    history.push("/addpost")
+                                }}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                            >글쓰기
+                            </MyButton>
+
+                            <MyButton
+
+                                onClick={() => {
+                                    handleCloseNavMenu()
+                                    dispatch(postActions.logoutDB())
+                                    history.push("/")
+                                }}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                            >로그아웃
+                            </MyButton>
+
+                        </Box>
+
+                    </Toolbar>
+                </Container>
+            </AppBar>
         )
     }
 
@@ -154,7 +171,7 @@ const Header = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
                     >
-                      🍰 맛있는거 4조 🍰
+                        🍰 맛있는거 4조 🍰
                     </Typography>
 
                     <Typography
@@ -163,7 +180,7 @@ const Header = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
-                       🍰 맛있는거 4조 🍰
+                        🍰 맛있는거 4조 🍰
                     </Typography>
 
                     <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
@@ -227,7 +244,7 @@ const Header = () => {
                             sx={{ my: 2, color: 'white', display: 'block' }}
                         >로그인
                         </MyButton>
-                                
+
                         <MyButton
                             onClick={() => {
                                 handleCloseNavMenu()

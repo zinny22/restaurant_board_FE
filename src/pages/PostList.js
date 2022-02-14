@@ -8,8 +8,8 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { getCookie } from "../shared/cookie";
 
 const PostList = (props) => {
-    const getcookie = getCookie("is_login")
-    console.log(getcookie)
+    
+    
     const dispatch = useDispatch();
     const post_list = useSelector((state)=>state.post.list);
     const {history} =props

@@ -1,7 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import instance from "../../shared/Request";
-
+import { getCookie, setCookie, deleteCookie } from "../../shared/cookie";
 
 const GET_POST = "GET_POST";
 const ADD_POST = "ADD_POST"
@@ -23,18 +23,18 @@ const initialState = {
 // middleware
 const addPostFB = (title, location, comment, preview) => {
     return function (dispatch, getState, { history }) {
-
+        const getcookie = getCookie("is_login")
         const _post = {
             title: title,
             location: location,
             comment: comment,
             image_url: preview,
         }
-
         let post = { ..._post }
         // 만들어둔 instance에 보낼 요청 타입과 주소로 요청합니다. 
         instance.post('/api/addpost/save', // 미리 약속한 주소
             { title: title, location: location, comment: comment, image_url: preview }, // 서버가 필요로 하는 데이터를 넘겨주고,
+            instance.defaults.headers.common["Authorization"] = `Bearer ${getcookie}`
         ).then((res) => {
             console.log(res)
             dispatch(addPost(post))
@@ -79,7 +79,6 @@ export default handleActions(
         }),
 
         [ADD_POST]: (state, action) => produce(state, (draft) => {
-
             draft.list.unshift(action.payload.post);
         })
     },
