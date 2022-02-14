@@ -25,20 +25,9 @@ Button.defaultProps = {
   _onClick: () => { },
   margin: false,
   width: '100%',
-  height: false,
+  height: '100%',
   padding: "12px 0px",
 };
-
-// const ElButton = styled.button`
-//   width: ${(props) => props.width};
-//   background-color: #212121;
-//   color: #ffffff;
-//   padding: 12px 0px;
-//   box-sizing: border-box;
-//   border: none;
-//   padding: ${(props) => props.padding};
-//   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-// `;
 
 
 const MyButton = styled.button`

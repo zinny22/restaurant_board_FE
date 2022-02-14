@@ -5,13 +5,17 @@ import {useSelector} from "react-redux";
 import { history } from "../redux/configureStore";
 import { useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
+import { getCookie } from "../shared/cookie";
 import Grid from "../elements/Grid";
 
 const PostList = (props) => {
+    
+    
     const dispatch = useDispatch();
     const post_list = useSelector((state)=>state.post.list);
     const {history} =props
     console.log(post_list)
+
     React.useEffect(() => {
            dispatch(postActions.getPostFB());
     }, []);
