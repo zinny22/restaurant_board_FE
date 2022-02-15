@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import instance from "../../shared/Request";
 import { getCookie, setCookie, deleteCookie } from "../../shared/cookie";
+import { useState } from "react";
 
 // actions
 const LOG_OUT = "LOG_OUT";
@@ -23,7 +24,7 @@ const loginDB = (id, pwd) => {
   return function (dispatch, getState, { history }) {
     instance.post("/api/login", { user_id: id, user_pwd: pwd }).then((res) => {
       alert(res.data.success);
-      localStorage.setItem("user_nick", res.data.user_nick)
+      localStorage.setItem("user_nick", res.data.user_nick);
       localStorage.setItem("is_login", res.data.token);
       dispatch(setUser());
       history.push("/");
@@ -42,7 +43,8 @@ const signUpDB = (id, nickname, password, confirmpwd) => {
         user_confirmpwd: confirmpwd,
       })
       .then((res) => {
-        window.alert(res.data.result);
+        window.alert(res.data.success);
+        history.push("/");
       })
       .catch((error) => {
         console.log(error);
@@ -51,18 +53,44 @@ const signUpDB = (id, nickname, password, confirmpwd) => {
 };
 
 //아이디 중복 제크 API
-const IDduplcheckDB = (id) => {
+const idDuplcheckDB = (id, nick) => {
   return function (dispatch, getState, { history }) {
+    console.log(id);
     instance
-      .get("/api/register/check", {
+      .post("/api/register/check", {
         user_id: id,
+        user_nick: nick,
       })
       .then((res) => {
-        window.alert(res.data.result);
-      })
-      .catch((error) => {
-        console.log(error);
+        console.log(res);
+        window.alert(res.data.alert);
       });
+
+    // .catch((error) => {
+    //   console.log(error);
+    //   window.alert(error.data.fail);
+    // });
+  };
+};
+
+//닉네임 중복 체크
+const nickDuplcheckDB = (id, nick) => {
+  return function (dispatch, getState, { history }) {
+    console.log(nick);
+    instance
+      .post("/api/register/check", {
+        user_id: id,
+        user_nick: nick,
+      })
+      .then((res) => {
+        console.log(res);
+        window.alert(res.data.alert);
+      });
+
+    // .catch((error) => {
+    //   console.log(error);
+    //   window.alert(error.data.fail);
+    // });
   };
 };
 
@@ -100,7 +128,8 @@ const actionCreators = {
   signUpDB,
   // loginCheckDB,
   logoutDB,
-  IDduplcheckDB,
+  idDuplcheckDB,
+  nickDuplcheckDB,
 };
 
 export { actionCreators };
