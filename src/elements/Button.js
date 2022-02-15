@@ -3,13 +3,14 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
-  const { height, text, _onClick, children, margin, width, padding } = props;
+  const { height, text, _onClick, children, margin, width, padding, cursor } = props;
 
   const styles = {
     margin: margin,
     width: width,
     padding: padding,
     height: height,
+    cursor: cursor,
   };
 
   return (
@@ -27,10 +28,12 @@ Button.defaultProps = {
   width: '100%',
   height: '100%',
   padding: "12px 0px",
+  cursor: false,
 };
 
 
 const MyButton = styled.button`
+  cursor: ${(props) => (props.cursor ? "pointer" : "")};
   width: ${(props) => props.width};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
   /* background: linear-gradient(45deg, #F9D893 30%, #F6BB43 90%); */

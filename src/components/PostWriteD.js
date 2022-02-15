@@ -79,7 +79,7 @@ const RecipeReviewCard = () => {
                     />
                 </Grid>
                 <Grid padding="16px" is_end >
-                    <Button height="45px" width="20%" text="게시글 작성" _onClick={() => {
+                    <Button cursor="pointer" height="45px" width="20%" text="게시글 작성" _onClick={() => {
                         addPost()
                         // history.push('/')
                     }}>
