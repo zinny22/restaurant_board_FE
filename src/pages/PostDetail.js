@@ -3,6 +3,7 @@ import { Grid, Image, Text} from "../elements/Index";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import moment from "moment";
 
 
 const PostDetail = (props) => {
@@ -18,7 +19,7 @@ const PostDetail = (props) => {
         <Grid width="40%" margin="30px auto" padding="16px" border ="1px solid #f68843" border_radius="10px">
           <Grid is_flex padding="16px">
             <Text size="25px">{_post.user_nick}</Text>
-            <Text color="gray" size="16px">{_post.createDate.slice(0,10)}</Text>
+            <Text color="gray" size="16px">{moment(_post.createDate).format('YYYY/MM/DD - HH:mm:ss')}</Text>
           </Grid>
           <Grid>
             <Style>
