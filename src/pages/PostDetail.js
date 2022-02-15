@@ -1,14 +1,11 @@
 import React from "react";
-import { Grid, Image, Button, Text, Input } from "../elements/Index";
+import { Grid, Image, Text} from "../elements/Index";
 import { useDispatch } from "react-redux";
-import { actionCreators as postActions } from "../redux/modules/post";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { history } from "../redux/configureStore";
 
 
 const PostDetail = (props) => {
-  const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.list);
   console.log(post_list);
   const post_id = props.match.params.postid;
@@ -42,17 +39,6 @@ const PostDetail = (props) => {
           </Grid>
 
           <Grid padding="16px 0px" is_flex>
-            <Button
-              height="50px"
-              width="20%"
-              text="게시글 수정"
-              _onClick ={()=>{history.push(`/editpost/${_post.post_id}`)}}></Button>
-            <Button
-              height="50px"
-              width="20%"
-              text="게시글 삭제"
-              _onClick={()=>{dispatch(postActions.deletePostFB(_post.post_id))}}
-              ></Button>
           </Grid>
         </Grid>
       </React.Fragment>

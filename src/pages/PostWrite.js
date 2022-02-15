@@ -4,7 +4,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Upload from "../shared/Upload";
-import { history } from "../redux/configureStore";
+
 
 const PostWrite = (props) => {
     const dispatch = useDispatch();
