@@ -17,7 +17,7 @@ const Post =(props)=>{
                 bg="white">
                     <Grid is_flex padding="16px">
                         <Text size="23px">{props.user_nick}</Text>
-                        <Text color="gray" size="16px">{props.createDate.slice(0,10)}</Text>
+                        <Text color="gray" size="16px">{props.createDate}</Text>
                     </Grid>
                     <Grid padding="16px">
                         <Image src={props.image_url} size="20" margin="auto"/>

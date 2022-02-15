@@ -120,6 +120,5 @@ const actionCreators = {
     addPostFB,
     deletePostFB,
     deletePost,
-    getonePostFB,
 }
 export { actionCreators };

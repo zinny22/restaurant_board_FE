@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../elements/Index";
 import { useDispatch, useSelector } from "react-redux";
-
+import styled from "styled-components";
 import { actionCreators as imageActions } from "../redux/modules/image";
 
 const Upload = (props) => {
@@ -27,7 +27,7 @@ const Upload = (props) => {
 
       return (
         <React.Fragment>
-          <input
+          <Input
             type="file"
             ref={fileInput}
             onChange={selectFile}
@@ -37,4 +37,14 @@ const Upload = (props) => {
       );
 };
 
+const Input= styled.input`
+display: inline-block;
+padding: 10px 20px;
+color: #fff;
+vertical-align: middle;
+background-color: #999999;
+cursor: pointer;
+height: 40px;
+margin-left: 10px;
+`
 export default Upload;
