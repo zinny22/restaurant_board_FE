@@ -10,10 +10,7 @@ const Upload = (props) => {
     const uploading = useSelector((state) => state.image.uploading);
     const fileInput = React.useRef();
 
-
-  
-  
-    const selectFile = (e) => {
+        const selectFile = (e) => {
     
         const reader = new FileReader();
         const file = e.target.files[0];
@@ -23,11 +20,10 @@ const Upload = (props) => {
         // reader.readAsArrayBuffer(file)
         reader.onloadend = () => {
           // reader.result는 파일의 컨텐츠(내용물)입니다!
-          console.log(reader.result)
+        
           dispatch(imageActions.setPreview(reader.result));
         };
     };
-
 
       return (
         <React.Fragment>

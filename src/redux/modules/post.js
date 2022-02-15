@@ -17,9 +17,10 @@ const initialState = {
 }
 
 // middleware
-const addPostFB = (title, location, comment, preview) => {
+const addPostFB = (title, location, comment, preview, rating) => {
     return function (dispatch, getState, { history }) {
         const is_local = localStorage.getItem("is_login")
+        console.log(rating)
         const _post = {
             title: title,
             location: location,
@@ -106,6 +107,7 @@ export default handleActions(
 
         [ADD_POST]: (state, action) => produce(state, (draft) => {
             draft.list.unshift(action.payload.post);
+           
         }),
         [DELETE_POST]: (state, action) => produce(state, (draft) => {
             let deleted = draft.list.filter((e,i)=>{

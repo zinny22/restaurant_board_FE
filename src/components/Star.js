@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FaStar } from "react-icons/fa";
-
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as starActions } from "../redux/modules/star";
 const colors = {
     orange: "#FFBA5A",
     grey: "#a9a9a9"
@@ -9,14 +10,15 @@ const colors = {
 };
 
 const Star = () => {
- 
+    const dispatch = useDispatch()
     const [currentValue, setCurrentValue] = useState(0);
     const [hoverValue, setHoverValue] = useState(undefined);
     const stars = Array(5).fill(0)
     // 0으로된 배열 5개
 
-    const handleClick = value => {
+    const handleClick = (value) => {
         setCurrentValue(value)
+        dispatch(starActions.startRatingDB(value))
     }
 
     const handleMouseOver = newHoverValue => {

@@ -26,12 +26,14 @@ const RecipeReviewCard = () => {
     const [expanded, setExpanded] = React.useState(false);
     const dispatch = useDispatch();
     const preview = useSelector((state) => state.image.preview);
+    const rating = useSelector((state) => state.star.star);
+    
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
     const [comment, setComment] = useState("");
     ;
     const addPost = () => {
-        dispatch(postActions.addPostFB(title, location, comment, preview));
+        dispatch(postActions.addPostFB(title, location, comment, preview, rating));
     };
 
     return (
@@ -62,7 +64,6 @@ const RecipeReviewCard = () => {
                         }}
                         label="가게 이름"
                         placeholder="가게 이름을 적어주세요"
-
                     />
                 </Grid>
                 <Grid>

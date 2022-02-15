@@ -21,13 +21,11 @@ const Header = () => {
   const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
   const is_local = localStorage.getItem("is_login") ? true : false;
-  console.log(is_local)
   const user_nick = localStorage.getItem("user_nick")
 
   // console.log(user_nick) 
   React.useEffect(() => {
   
-
   }, [is_login]);
   //대괄호 변수가 바뀌면 함수를 실행해라!
 

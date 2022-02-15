@@ -1,7 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import instance from "../../shared/Request";
-import { getCookie, setCookie, deleteCookie } from "../../shared/cookie";
 import { useState } from "react";
 
 // actions
