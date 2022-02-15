@@ -28,8 +28,8 @@ const Login = () => {
 
   return (
     <React.Fragment>
-      <Grid width="60vw" margin="auto" padding="16px">
-        <Text size="20px" bold center>
+      <Grid width="50%" margin="30px auto" padding="16px" >
+        <Text size="25px" bold center>
           🥨로그인하고 맛난거 먹으러 가볼까요?🥨
         </Text>
         <Grid margin="16px 0px">
@@ -52,22 +52,22 @@ const Login = () => {
             }}
           />
         </Grid>
-        <Grid margin="30px 0px 16px 0px">
+        <Grid margin="30px 0px 16px 0px" is_flex >
           <Button
+            height="40px"
             text="로그인 하기"
             _onClick={(e) => {
               console.log("로그인 완료!");
               login();
             }}
-          />
-        </Grid>
-        <Grid margin="16px 0px">
+          />          
           <Button
-            text="회원가입 하기"
-            _onClick={() => {
-              history.push("/Register");
-            }}
-          />
+          height="40px"
+          text="회원가입 하기"
+          _onClick={() => {
+            history.push("/Register");
+          }}
+        />
         </Grid>
       </Grid>
     </React.Fragment>
