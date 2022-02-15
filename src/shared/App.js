@@ -2,6 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import PostList from "../pages/PostList";
 import PostWrite from "../pages/PostWrite";
+import PostEdit from "../pages/PostEdit";
 import "./App.css";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -33,7 +34,8 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/Register" exact component={Register} />
         <Route path="/addpost" exact component={PostWrite} />
-        {<Route path="/getpost/:postid" exact component={PostDetail}/>}
+        <Route path="/editpost/:postid" exact component={PostEdit}/>
+        <Route path="/getpost/:postid" exact component={PostDetail}/>
         {/* 수정을 할때는 write id값이 필요하다 */}
       </ConnectedRouter>
       {/* </Grid> */}
