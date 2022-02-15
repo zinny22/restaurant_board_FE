@@ -1,9 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< HEAD
 import styled from "styled-components";
-=======
->>>>>>> 692f61a201e43745faa5489bba5287658c16ee29
 import { actionCreators as imageActions } from "../redux/modules/image";
 
 const Upload = (props) => {

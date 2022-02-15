@@ -4,12 +4,8 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Upload from "../shared/Upload";
-<<<<<<< HEAD
 import { history } from "../redux/configureStore";
 import RecipeReviewCard from "../components/PostWriteD"
-=======
-
->>>>>>> 692f61a201e43745faa5489bba5287658c16ee29
 
 const PostWrite = (props) => {
     const dispatch = useDispatch();
@@ -24,7 +20,7 @@ const PostWrite = (props) => {
 
     return (
         <React.Fragment>
-            <Grid  width= "50%" margin="30px auto" padding="16px">
+            <Grid width="50%" margin="30px auto" padding="16px">
             <RecipeReviewCard/>  
             </Grid>
         </React.Fragment>

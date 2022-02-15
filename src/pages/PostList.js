@@ -8,16 +8,15 @@ import Grid from "../elements/Grid";
 const PostList = (props) => {
     const dispatch = useDispatch();
     const post_list = useSelector((state)=>state.post.list);
-<<<<<<< HEAD
+
     const {history} =props
     console.log(post_list)
     
-=======
     const user_nick = localStorage.getItem("user_nick")
->>>>>>> 692f61a201e43745faa5489bba5287658c16ee29
+
     React.useEffect(() => {
            dispatch(postActions.getPostFB());
-        //    
+    
     }, []);
   
     return (
