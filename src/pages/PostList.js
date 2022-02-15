@@ -15,9 +15,10 @@ const PostList = (props) => {
     const post_list = useSelector((state)=>state.post.list);
     const {history} =props
     console.log(post_list)
-
+    const window = 
     React.useEffect(() => {
            dispatch(postActions.getPostFB());
+        //    
     }, []);
   
     return (

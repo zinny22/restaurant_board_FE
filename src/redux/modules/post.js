@@ -45,7 +45,8 @@ const addPostFB = (title, location, comment, preview) => {
 const getPostFB = () => {
     return function (dispatch, getState, { history }) {
         instance.get('/api/main', {})
-        .then(function (response) {
+        .then(function (response) { 
+            console.log(response.data.response)
             const postDB = response.data.response
             const post_list = []
             postDB.forEach((v, i) => {
@@ -82,13 +83,12 @@ const deletePostFB =(post_id=null)=>{
     }
 }
 
-
-const getonePostFB = () => {
-    return function (dispatch, getState, { history }) {
-      const user_nick = getState().user.user_nick
-      console.log(user_nick)
-}
-}
+// const editPostFB =(post_id=null, post={})=>{
+//     return function(dispatch ,getState, {history}){
+//         const _image = getState().image.preview;
+//         const _post_idx = getState().post.list.findIndex((p)=>p.post_id===post_id)
+//         const _post = getState().post.list[_post_idx];
+//         instance.patch(`/api/getpost/modify/${post_id}`,{})
 
 
 export default handleActions(
@@ -105,6 +105,9 @@ export default handleActions(
                 return (parseInt(action.payload._post_idx)!==i)
             })
             draft.list=deleted
+        }),
+        [EDIT_POST]: (state, action)=>produce(state, (draft)=>{
+
         })
     },
     initialState

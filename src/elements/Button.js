@@ -42,11 +42,11 @@ const MyButton = styled.button`
   height: ${(props) => props.height};
   transition: ease all .1s;
   @media only screen and (max-width: 960px) {
-    width: ${(props) => (props.width ? "30%" : "")};
-    height: ${(props) => (props.height ? "35px" : "")};}
+    width: ${(props) => (props.width ? "100%" : "")};
+    height: ${(props) => (props.height ? "45px" : "")};}
   @media only screen and (max-width: 650px) {
-    width: ${(props) => (props.width ? "50%" : "")};
-    height: ${(props) => (props.height ? "30px" : "")};}
+    width: ${(props) => (props.width ? "100%" : "")};
+    height: ${(props) => (props.height ? "45px" : "")};}
 `
 
 export default Button;

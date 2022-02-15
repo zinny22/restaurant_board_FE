@@ -15,7 +15,7 @@ import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { actionCreators as headerActions } from "../redux/modules/header";
+
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,8 @@ const Header = () => {
 
   // console.log(user_nick) 
   React.useEffect(() => {
-   
+  
+
   }, [is_login]);
   //대괄호 변수가 바뀌면 함수를 실행해라!
 
