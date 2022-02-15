@@ -147,20 +147,25 @@ const Register = (props) => {
     dispatch(userActions.signUpDB(id, nick, pwd, confirmpwd));
   };
 
-  const IDduplcheck = () => {
-    console.log(id);
+  const idDuplcheck = () => {
+    dispatch(userActions.idDuplcheckDB(id));
+  };
+
+  const nickDuplcheck = () => {
+    dispatch(userActions.nickDuplcheckDB(nick));
   };
 
   return (
     <React.Fragment>
-      <Grid width="50%" margin="30px auto" padding="16px" >
+      <Grid width="50%" margin="30px auto" padding="16px">
         <Text size="25px" bold center>
           🍟세상에 맛난게 너무 많다! 회원가입 해보자🍟
         </Text>
         <Text>아이디</Text>
 
-        <Grid is_flex >
+        <Grid is_flex>
           <Input
+            id="btnForid"
             placeholder="사용할 이메일 주소를 입력해 주세요"
             type="string"
             _onChange={(e) => {
@@ -172,20 +177,27 @@ const Register = (props) => {
             width="10vw"
             text="중복확인"
             height="35px"
-            _onClick={IDduplcheck}
+            _onClick={idDuplcheck}
           />
         </Grid>
 
         <Text>닉네임</Text>
         <Grid is_flex>
           <Input
+            id="btnFornick"
             placeholder="닉네임은 한글, 영문, 숫자만 가능, 2-10자리 가능"
             type="string"
             _onChange={(e) => {
               setNick(e.target.value);
             }}
           />
-          <Button margin="0px 10px 0px 10px" width="10vw" height="35px" text="중복확인" />
+          <Button
+            margin="0px 10px 0px 10px"
+            width="10vw"
+            height="35px"
+            text="중복확인"
+            _onClick={nickDuplcheck}
+          />
         </Grid>
 
         <Grid>
@@ -212,7 +224,7 @@ const Register = (props) => {
             />
           </form>
         </Grid>
-        <Grid margin="30px 0px 16px 0px" center >
+        <Grid margin="30px 0px 16px 0px" center>
           <Button height="40px" text="회원가입하기" _onClick={signup} />
         </Grid>
       </Grid>
