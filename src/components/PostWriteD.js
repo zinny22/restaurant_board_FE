@@ -34,11 +34,12 @@ const RecipeReviewCard = () => {
     };
 
     return (
-        <Card sx={{  }}>
-            <CardHeader
-                title="게시글작성"
-            />
-            <Upload />
+        <Card sx={{}}>
+            <Grid is_flex >
+                <Text size="35px" bold margin="20px">게시글작성</Text>
+                <Upload />
+            </Grid>
+
             <Image
                 margin="10px 0px 0px 0px"
                 shape="rectangle"

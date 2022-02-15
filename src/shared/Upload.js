@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 import styled from "styled-components";
 import { actionCreators as imageActions } from "../redux/modules/image";
+import { Grid } from "../elements/Index";
 
 const Upload = (props) => {
     const dispatch = useDispatch();
     const uploading = useSelector((state) => state.image.uploading);
     const fileInput = React.useRef();
 
+
+  
+  
     const selectFile = (e) => {
     
         const reader = new FileReader();
@@ -26,24 +31,33 @@ const Upload = (props) => {
 
       return (
         <React.Fragment>
+          <Grid is_end padding="10px" width="50%" >
+          <AddPhotoAlternateOutlinedIcon
+           style={{color:"#f68843", fontSize:"30px", cursor:"pointer"}}
+           onClick={() => {
+          
+            fileInput.current.click()
+           }}/>
           <Input
+            id="file"
             type="file"
+            disabled={uploading} 
             ref={fileInput}
             onChange={selectFile}
-            disabled={uploading}
           />
+         </Grid>
         </React.Fragment>
       );
 };
 
-const Input= styled.input`
-display: inline-block;
-padding: 10px 20px;
-color: #fff;
-vertical-align: middle;
-background-color: #999999;
-cursor: pointer;
-height: 40px;
-margin-left: 10px;
+
+const Input = styled.input`
+position: absolute;
+width: 0;
+height: 0;
+padding: 0;
+overflow: hidden;
+border: 0;
 `
+
 export default Upload;
