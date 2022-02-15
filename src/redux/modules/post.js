@@ -70,25 +70,32 @@ const getPostFB = () => {
 
 const deletePostFB =(post_id=null)=>{
     return function(dispatch, getState,{history}){
-        const _post_idx = getState().post.list.findIndex((p)=>p.id===post_id)
-        instance.delete(`/api/getpost/delete/${post_id}`,{},
-        )
-        .then(function(response){
-            console.log(response)
-            dispatch(deletePost(_post_idx))
-            history.replace('/')
-        }).catch((error) => {
-            console.error("Error removing document: ", error);
-        });
+        const _post_idx = getState().post.list.findIndex((p)=>p.post_id===post_id)
+        console.log(_post_idx)
+        // instance.delete(`/api/getpost/delete/${post_id}`,{},)
+        // .then(function(response){
+        //     console.log(response)
+        //     dispatch(deletePost(_post_idx))
+        //     window.location.reload()
+        // }).catch((error) => {
+        //     console.error("Error removing document: ", error);
+        // });
     }
 }
 
-// const editPostFB =(post_id=null, post={})=>{
-//     return function(dispatch ,getState, {history}){
-//         const _image = getState().image.preview;
-//         const _post_idx = getState().post.list.findIndex((p)=>p.post_id===post_id)
-//         const _post = getState().post.list[_post_idx];
-//         instance.patch(`/api/getpost/modify/${post_id}`,{})
+const editPostFB =(post_id=null, post={})=>{
+    return function(dispatch ,getState, {history}){
+        // console.log(post)
+        instance.patch(`/api/getpost/modify/${post_id}`,
+        { title :post.title, location:post.location, comment:post.comment,})
+        .then(function(response){
+            console.log(response)
+            dispatch(editPost(post_id, {...post}))
+            history.replace('/')
+        }).catch((error)=>{
+            console.log(error)
+        })
+    }}
 
 
 export default handleActions(
@@ -107,7 +114,8 @@ export default handleActions(
             draft.list=deleted
         }),
         [EDIT_POST]: (state, action)=>produce(state, (draft)=>{
-
+            let idx = draft.list.findIndex((p)=>p.post_id===action.payload.post_id)
+            draft.list[idx] ={...draft.list[idx], ...action.payload.post}
         })
     },
     initialState
@@ -120,5 +128,7 @@ const actionCreators = {
     addPostFB,
     deletePostFB,
     deletePost,
+    editPostFB,
+    editPost
 }
 export { actionCreators };
