@@ -11,16 +11,13 @@ const PostEdit = (props) => {
     const preview = useSelector((state) => state.image.preview);
     const post_list = useSelector((state)=>state.post.list)
 
-
-
     const post_id =props.match.params.postid;
-    const is_edit = post_id? true:false
-    let _post = is_edit? post_list.find((p)=> p.post_id === post_id):null
+    let _post = post_list.find((p)=> p.post_id === post_id)
     console.log(_post)
 
-    const [title, setTitle] = React.useState(_post?_post.title:"");
-    const [location, setLocation] = React.useState(_post?_post.location:"");
-    const [comment, setComment] = React.useState(_post?_post.comment:"");
+    const [title, setTitle] = React.useState(_post.title);
+    const [location, setLocation] = React.useState(_post.location);
+    const [comment, setComment] = React.useState(_post.comment);
     
 
     // React.useEffect(()=>{
@@ -90,7 +87,7 @@ const PostEdit = (props) => {
             </Grid>
           
             <Grid padding="16px" is_end >
-                <Button height="45px" width="20%" text="게시글 수정 완료"></Button>
+                <Button height="45px" width="20%" text="게시글 수정"></Button>
             </Grid>
 
             </Grid>

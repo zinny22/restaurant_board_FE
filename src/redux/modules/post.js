@@ -76,7 +76,7 @@ const deletePostFB =(post_id=null)=>{
         .then(function(response){
             console.log(response)
             dispatch(deletePost(_post_idx))
-            history.push('/')
+            history.replace('/')
         }).catch((error) => {
             console.error("Error removing document: ", error);
         });
@@ -120,6 +120,5 @@ const actionCreators = {
     addPostFB,
     deletePostFB,
     deletePost,
-    getonePostFB,
 }
 export { actionCreators };
