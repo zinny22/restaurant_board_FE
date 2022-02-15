@@ -11,10 +11,7 @@ const SET_USER = "SET_USER";
 // action creators
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
-const setUser = createAction(SET_USER, (token, nickname) => ({
-  token,
-  nickname,
-}));
+const setUser = createAction(SET_USER, () => ({}));
 
 // initialState
 const initialState = {
@@ -26,8 +23,9 @@ const loginDB = (id, pwd) => {
   return function (dispatch, getState, { history }) {
     instance.post("/api/login", { user_id: id, user_pwd: pwd }).then((res) => {
       alert(res.data.success);
-      console.log(res.data.token, res.data.user_nick);
-      dispatch(setUser(res.data.token, res.data.user_nick));
+      localStorage.setItem("user_nick", res.data.user_nick)
+      localStorage.setItem("is_login", res.data.token);
+      dispatch(setUser());
       history.push("/");
     });
   };
@@ -81,14 +79,7 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload);
-        const token = action.payload.token;
-        // let nickname;
-        // console.log(nickname);
-        localStorage.setItem("is_login", token);
-        // draft.user = action.payload.user;
         draft.is_login = true;
-        draft.nickname = action.payload.nickname;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {

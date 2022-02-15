@@ -14,17 +14,20 @@ import MenuItem from "@mui/material/MenuItem";
 import styled from "styled-components";
 import { history } from "../redux/configureStore";
 import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as postActions } from "../redux/modules/user";
+import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as headerActions } from "../redux/modules/header";
 
 const Header = () => {
   const dispatch = useDispatch();
-  // const is_login = useSelector((state) => state.user.is_login);
+  const is_login = useSelector((state) => state.user.is_login);
   const is_local = localStorage.getItem("is_login") ? true : false;
-  const user_nick = useSelector((state) => state.user.nickname);
-  console.log(is_local);
-  console.log(user_nick);
+  const user_nick = localStorage.getItem("user_nick")
 
-  // const user_nick = useSelector((state) => state.user.user_nick);
+  // console.log(user_nick) 
+  React.useEffect(() => {
+   
+  }, [is_login]);
+  //대괄호 변수가 바뀌면 함수를 실행해라!
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -46,9 +49,19 @@ const Header = () => {
               variant="h5" //글자크기
               noWrap
               component="div"
+              sx={{ flexGrow: 8, display: { xs: "none", md: "flex" } }}
+            >
+              🍰 맛있는거 4조 🍰
+            </Typography>
+          
+           <Typography
+              onClick={handleCloseNavMenu}
+              variant="h6" //글자크기
+              noWrap
+              component="div"
               sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
             >
-              🍰 맛있는거 4조 🍰
+              {user_nick}님 안녕하세요
             </Typography>
 
             <Typography
@@ -59,13 +72,6 @@ const Header = () => {
             >
               🍰 맛있는거 4조 🍰
             </Typography>
-
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-            ></Typography>
 
             <Box sx={{ flexGrow: 0, display: { xs: "flex", md: "none" } }}>
               {/* md가 flex였다가 960 이하로 작아지면 none! xs 0px 이상부터는 flex가 적용! */}
@@ -111,7 +117,7 @@ const Header = () => {
                 <MenuItem
                   onClick={() => {
                     handleCloseNavMenu();
-                    dispatch(postActions.logoutDB());
+                    dispatch(userActions.logoutDB());
                     window.location.reload("/");
                   }}
                 >
@@ -135,7 +141,7 @@ const Header = () => {
               <MyButton
                 onClick={() => {
                   handleCloseNavMenu();
-                  dispatch(postActions.logoutDB());
+                  dispatch(userActions.logoutDB());
                   window.location.reload("/");
                 }}
                 sx={{ my: 2, color: "white", display: "block" }}
@@ -261,12 +267,8 @@ const Header = () => {
 };
 
 const MyButton = styled(Button)`
-<<<<<<< HEAD
-  background: linear-gradient(45deg, #f9d893 30%, #f6bb43 90%);
-=======
   /* background: linear-gradient(45deg, #F9D893 30%, #F6BB43 90%); */
   background-color: white;
->>>>>>> a5130d9caf126deb082a53190173a4fa6555c218
   border: 0;
   border-radius: 3px;
   box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);

@@ -1,7 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import instance from "../../shared/Request";
-import { getCookie, setCookie, deleteCookie } from "../../shared/cookie";
 
 const GET_POST = "GET_POST";
 const ADD_POST = "ADD_POST";
@@ -14,14 +13,7 @@ const deletePost = createAction(DELETE_POST, (post_index)=>({post_index}))
 const editPost = createAction(EDIT_POST,(post_id,post)=>({post_id,post}))
 
 const initialState = {
-    list: [{
-        user_nick: "jin",
-        createDate: "2022-02-11 10:00:00",
-        image_url: "https://img.sbs.co.kr/newimg/news/20210322/201532338_1280.jpg",
-        title: "초밥이조아",
-        loction: "",
-        comment: ""
-    }],
+    list: [],
 }
 
 // middleware
@@ -40,7 +32,7 @@ const addPostFB = (title, location, comment, preview) => {
             { title: title, location: location, comment: comment, image_url: preview }, // 서버가 필요로 하는 데이터를 넘겨주고,
             instance.defaults.headers.common["Authorization"] = `Bearer ${is_local}`
         ).then((res) => {
-            console.log(res)
+            console.log(res.data.success)
             dispatch(addPost(post))
             history.push('/')
         })
@@ -54,9 +46,7 @@ const getPostFB = () => {
     return function (dispatch, getState, { history }) {
         instance.get('/api/main', {})
         .then(function (response) {
-            console.log(response.data.response)
             const postDB = response.data.response
-            console.log(postDB)
             const post_list = []
             postDB.forEach((v, i) => {
                 let list = {
@@ -70,12 +60,12 @@ const getPostFB = () => {
                 }
                 post_list.push(list)
             })
-            console.log(post_list)
             dispatch(getPost(post_list))
         })
             .catch(function (error) { console.log(error) })
     }
 }
+
 
 const deletePostFB =(post_id=null)=>{
     return function(dispatch, getState,{history}){
@@ -93,11 +83,17 @@ const deletePostFB =(post_id=null)=>{
 }
 
 
+const getonePostFB = () => {
+    return function (dispatch, getState, { history }) {
+      const user_nick = getState().user.user_nick
+      console.log(user_nick)
+}
+}
+
 
 export default handleActions(
     {
         [GET_POST]: (state, action) => produce(state, (draft) => {
-            console.log(action.payload)
             draft.list = action.payload.post_list
         }),
 
@@ -120,6 +116,7 @@ const actionCreators = {
     getPostFB,
     addPostFB,
     deletePostFB,
-    deletePost
+    deletePost,
+    getonePostFB,
 }
 export { actionCreators };
