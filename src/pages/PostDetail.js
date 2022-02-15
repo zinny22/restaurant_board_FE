@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { history } from "../redux/configureStore";
 
 
 const PostDetail = (props) => {
@@ -45,9 +46,7 @@ const PostDetail = (props) => {
               height="50px"
               width="20%"
               text="게시글 수정"
-              _onClick={()=>{
-                dispatch(postActions.editPost)
-              }}></Button>
+              _onClick ={()=>{history.push(`/editpost/${_post.post_id}`)}}></Button>
             <Button
               height="50px"
               width="20%"
