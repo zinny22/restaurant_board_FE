@@ -3,9 +3,11 @@ import { useDispatch} from "react-redux";
 import {Grid, Image,Button,Text} from "../elements/Index"
 import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
+import moment from "moment"
 
 const Post =(props)=>{
     const dispatch = useDispatch();
+    
     return(
         <React.Fragment>
                 <Grid 
@@ -22,7 +24,7 @@ const Post =(props)=>{
                     </Grid> 
                     <Grid is_flex padding="16px">
                         <Text size="23px">{props.user_nick}</Text>
-                        <Text color="gray" size="16px">{props.createDate}</Text>
+                        <Text color="gray" size="16px">{moment(props.createDate).format('YYYY/MM/DD - HH:mm:ss')}</Text>
                     </Grid>
                     <Grid padding="16px">
                         <Grid _onClick ={()=>{history.push(`/getpost/${props.post_id}`)}}><Image src={props.image_url} size="20" margin="auto"/></Grid>
