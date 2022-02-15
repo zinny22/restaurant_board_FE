@@ -18,6 +18,7 @@ import { Grid, Text, Button, Image, Input } from "../elements/Index";
 import { useSelector, useDispatch } from "react-redux";
 import Upload from "../shared/Upload";
 import { actionCreators as postActions } from "../redux/modules/post";
+import Star from "./Star"
 
 
 
@@ -35,10 +36,16 @@ const RecipeReviewCard = () => {
 
     return (
         <Card sx={{}}>
-            <Grid is_flex >
-                <Text size="35px" bold margin="20px">게시글작성</Text>
-                <Upload />
-            </Grid>
+            <div style={{ display: "flex", alignItems: "center", flexDirection: "row", }}>
+                <div style={{flexShrink: "0"}}>
+                    <Text size="35px" bold margin="20px 0px 20px 20px">게시글작성</Text>
+                </div>
+                <div style={{flexShrink: "0"}}>
+                    <Star />
+                </div>    
+                <Upload /> 
+            </div>
+            
 
             <Image
                 margin="10px 0px 0px 0px"

@@ -31,11 +31,10 @@ const Upload = (props) => {
 
       return (
         <React.Fragment>
-          <Grid is_end padding="10px" width="50%" >
+          <Grid is_end padding="10px">
           <AddPhotoAlternateOutlinedIcon
            style={{color:"#f68843", fontSize:"30px", cursor:"pointer"}}
            onClick={() => {
-          
             fileInput.current.click()
            }}/>
           <Input

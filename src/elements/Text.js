@@ -33,7 +33,6 @@ const P = styled.p`
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? "700" : "400")};
   @media only screen and (max-width: 500px) {
-   
   }
 `;
 
