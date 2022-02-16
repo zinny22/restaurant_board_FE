@@ -8,26 +8,16 @@ import moment from "moment";
 
 
 const PostDetail = (props) => {
-
+  const dispatch = useDispatch()
   const post_id = props.match.params.postid;
-<<<<<<< HEAD
-  const dispatch = useDispatch();
-=======
-  console.log(post_id)
->>>>>>> 174e1051e82ee6d61b036f2d6ec2200e257cdde6
 
+  
   React.useEffect(()=>{
     dispatch(postActions.getOnePostFB(post_id)) 
   },[])
-<<<<<<< HEAD
-  
-  const post_list = useSelector((state) => state.post.list);
-  console.log(post_list)
-=======
-  const post = useSelector((state) => state.post.list);
-  console.log(post)
 
->>>>>>> 174e1051e82ee6d61b036f2d6ec2200e257cdde6
+  const post = useSelector((state) => state.post.detail);
+  console.log(post)
 
   return (
 

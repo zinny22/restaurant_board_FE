@@ -16,6 +16,7 @@ const getOnePost = createAction(GET_ONE_POST, (post)=>({post}))
 
 const initialState = {
     list: [],
+    detail: [],
 }
 
 // middleware
@@ -105,47 +106,14 @@ const editPostFB =(post_id=null, post={})=>{
         })
     }}
 
-<<<<<<< HEAD
-
- 
-const getOnePostFB =(post_id)=>{
-    return function(dispatch, getState, {history}){
-
-        instance.get(`/api/getpost/${post_id}`, {})
-        .then(function (response) {
-            console.log(response.data.response)
-            const postDB = response.data.response
-            
-            const post_list = []
-            postDB.forEach((v, i) => {
-                let list = {
-                    title: v.title,
-                    user_nick: v.user_nick,
-                    createDate: v.createdDate,
-                    post_id: v._id,
-                    image_url: v.image_url,
-                    comment: v.comment,
-                    location: v.location,
-                    score: v.score,
-                }
-                
-                post_list.push(list)
-            
-            })
-            const _post = post_list.find((p)=>p.post_id = post_id)
-            console.log(_post)
-            dispatch(getOnePost(_post))
-        })
-        .catch(function (error) { console.log(error) })
-=======
-const getOnePostFB =(post_id)=>{
+    const getOnePostFB =(post_id)=>{
     return function(dispatch, getState, {history}){
         instance.get(`/api/getpost/${post_id}`, {})
         .then(function (response) {
             const post = response.data.response
-            dispatch(getPost(post))
+            dispatch(getOnePost(post))
         }).catch(function (error) { console.log(error) })
->>>>>>> 174e1051e82ee6d61b036f2d6ec2200e257cdde6
+
     }
 }
 
@@ -170,7 +138,7 @@ export default handleActions(
             draft.list[idx] = { ...draft.list[idx], ...action.payload.post }
         }),
         [GET_ONE_POST]: (state, action) => produce(state, (draft)=>{
-            draft.list=action.payload.post
+            draft.detail=action.payload.post
         })
     },
     initialState
