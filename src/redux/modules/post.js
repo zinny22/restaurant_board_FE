@@ -65,9 +65,12 @@ const getPostFB = () => {
                         post_id: v._id,
                         image_url: v.image_url,
                         comment: v.comment,
-                        location: v.location
+                        location: v.location,
+                        score: v.score,
                     }
+                    
                     post_list.push(list)
+                
                 })
                 dispatch(getPost(post_list))
             })

@@ -5,15 +5,15 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configureStore";
 import moment from "moment"
 import styled from "styled-components";
-
+import StarMain from "./StarMain";
 const Post =(props)=>{
     const dispatch = useDispatch();
     const user_nick = props.user_nick
     const title = props.title
     const image_url =props.image_url
     const createDate = moment(props.createDate).format('YYYY/MM/DD - HH:mm:ss')
-
-    
+    const score = props.score
+    console.log(score)
     return(
         <React.Fragment>
             <Cards>
@@ -27,6 +27,9 @@ const Post =(props)=>{
                         <Text color ="gray">{createDate}</Text>
                     </Nick>
                     <Text center size="150%">📍{title}</Text>
+                    <Grid is_end>
+                    <StarMain score={score}/>
+                    </Grid>
                 </TextWrap>
                 <div style={{borderRadius:"10px",overflow:"hidden"}}
                 onClick ={()=>{history.push(`/getpost/${props.post_id}`)}}>

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import Upload from "../shared/Upload";
 import { history } from "../redux/configureStore";
 import RecipeReviewCard from "../components/PostWriteD"
-import StarMain from "../components/StarMain";
+
 
 const PostWrite = (props) => {
     const dispatch = useDispatch();
@@ -14,7 +14,6 @@ const PostWrite = (props) => {
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
     const [comment, setComment] = useState("");
-
     const addPost = () => {
         dispatch(postActions.addPostFB(title, location, comment, preview));
     };
@@ -24,7 +23,6 @@ const PostWrite = (props) => {
             <Grid width="50%" margin="30px auto" padding="16px">
             <RecipeReviewCard/>  
             </Grid>
-            <StarMain/>
         </React.Fragment>
     );
 }

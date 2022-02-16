@@ -11,9 +11,8 @@ const colors = {
 const StarMain = (props) => {
     const stars = Array(5).fill(0)
     // 0으로된 배열 5개
-
     return (
-        <Box>
+      
             <ItemStyle>
                 <div style={styles.stars}>
                     {stars.map((_, index) => {
@@ -30,14 +29,9 @@ const StarMain = (props) => {
                     })}
                 </div>
             </ItemStyle>
-        </Box>
+      
     );
 };
-
-StarMain.defaultProps = {
-    score: 3
-}
-
 const styles = {
     stars: {
         display: "flex",
@@ -46,12 +40,8 @@ const styles = {
     }
 }
 
-const Box = styled.div`
-    margin: auto; 
-    `;
-
 const ItemStyle = styled.div`
-    width: 100%;
+    width: 20%;
     `;
 
 
