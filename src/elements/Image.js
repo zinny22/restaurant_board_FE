@@ -26,7 +26,7 @@ const Image = (props)=>{
 }
 Image.defaultProps = {
     shape: "rectangle",
-    src:"https://img.sbs.co.kr/newimg/news/20210322/201532338_1280.jpg",
+    src:"",
     size: 36,
     borderRadius : false,
     margin: false,

@@ -28,7 +28,7 @@ Button.defaultProps = {
   width: '100%',
   height: '100%',
   padding: "12px 0px",
-  cursor: false,
+  cursor: null,
 };
 
 

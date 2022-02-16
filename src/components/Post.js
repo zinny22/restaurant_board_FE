@@ -11,7 +11,6 @@ const Post =(props)=>{
     const dispatch = useDispatch();
     const user_nick = props.user_nick
     const title = props.title
-    const image_url =props.image_url
     const createDate = moment(props.createDate).format('YYYY/MM/DD - HH:mm:ss')
     const score = props.score
     console.log(score)

@@ -14,7 +14,7 @@ const setPreview = createAction(SET_PREVIEW, (preview) => ({ preview }));
 
 // initial state
 const initialState = {
-  image_url: "http://via.placeholder.com/400x300",
+  image_url: "",
   uploading: false,
   preview: null,
 };
