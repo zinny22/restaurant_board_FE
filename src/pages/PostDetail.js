@@ -25,7 +25,6 @@ const PostDetail = (props) => {
         <Grid width="40%" margin="30px auto" padding="16px" box_shadow border_radius="10px">
           <Grid is_flex padding="16px">
             <Text size="25px">{post.user_nick}</Text>
-            <Text color="gray" size="16px">{moment(post.createDate).format('YYYY/MM/DD - HH:mm:ss')}</Text>
           </Grid>
           <Grid>
             <Style>

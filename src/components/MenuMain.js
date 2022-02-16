@@ -26,7 +26,6 @@ const ResponsiveAppBar = (props) => {
     dispatch(postActions.getPostFB());
   }, []);
   const post_list = useSelector((state)=>state.post.list);
-  console.log(post_list)
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
