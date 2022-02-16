@@ -105,6 +105,7 @@ const editPostFB =(post_id=null, post={})=>{
         })
     }}
 
+<<<<<<< HEAD
 
  
 const getOnePostFB =(post_id)=>{
@@ -136,6 +137,15 @@ const getOnePostFB =(post_id)=>{
             dispatch(getOnePost(_post))
         })
         .catch(function (error) { console.log(error) })
+=======
+const getOnePostFB =(post_id)=>{
+    return function(dispatch, getState, {history}){
+        instance.get(`/api/getpost/${post_id}`, {})
+        .then(function (response) {
+            const post = response.data.response
+            dispatch(getPost(post))
+        }).catch(function (error) { console.log(error) })
+>>>>>>> 174e1051e82ee6d61b036f2d6ec2200e257cdde6
     }
 }
 

@@ -18,14 +18,14 @@ const Post =(props)=>{
         <React.Fragment>
             <Cards>
                 <TextWrap>
-                    <Btn>
+                    {/* <Btn>
                         {props.is_me && <Button padding ="5%" margin="0px 3px" _onClick={()=>{history.push(`/editpost/${props.post_id}`)}} text="수정"/>}
                         {props.is_me && <Button padding ="5%"_onClick={()=>{dispatch(postActions.deletePostFB(props.post_id))}} text="삭제"/>}
-                    </Btn>
+                    </Btn> */}
                     <Nick>
                         <Text size="120%">{user_nick}</Text>
                         <Text color ="gray">{createDate}</Text>
-                        <MenuMain/>
+                        {props.is_me && <MenuMain/>}
                     </Nick>
                     <Text center size="150%">📍{title}</Text>
                     <Grid is_end>
