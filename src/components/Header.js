@@ -37,6 +37,7 @@ const Header = () => {
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+    history.push("/")
   };
 
   if (is_local) {
@@ -69,6 +70,7 @@ const Header = () => {
               noWrap
               component="div"
               sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+              onClick={handleCloseNavMenu}
             >
               🍰 맛있는거 4조 🍰
             </Typography>

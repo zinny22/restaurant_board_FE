@@ -105,35 +105,13 @@ const editPostFB =(post_id=null, post={})=>{
         })
     }}
 
-
 const getOnePostFB =(post_id)=>{
     return function(dispatch, getState, {history}){
-        instance.get('/api/main', {})
+        instance.get(`/api/getpost/${post_id}`, {})
         .then(function (response) {
-            console.log(response.data.response)
-            const postDB = response.data.response
-            console.log(postDB)
-            const post_list = []
-            postDB.forEach((v, i) => {
-                let list = {
-                    title: v.title,
-                    user_nick: v.user_nick,
-                    createDate: v.createdDate,
-                    post_id: v._id,
-                    image_url: v.image_url,
-                    comment: v.comment,
-                    location: v.location,
-                    score: v.score,
-                }
-                
-                post_list.push(list)
-            
-            })
-            const _post = post_list.find((p)=>p.post_id = post_id)
-            console.log(_post)
-            dispatch(getPost(_post))
-        })
-        .catch(function (error) { console.log(error) })
+            const post = response.data.response
+            dispatch(getPost(post))
+        }).catch(function (error) { console.log(error) })
     }
 }
 
