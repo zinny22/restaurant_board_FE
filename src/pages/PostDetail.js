@@ -1,32 +1,27 @@
 import React from "react";
 import { Grid, Image, Text} from "../elements/Index";
+import { actionCreators as postActions } from "../redux/modules/post";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { actionCreators as postActions } from "../redux/modules/post";
 import styled from "styled-components";
 import moment from "moment";
 
 
 const PostDetail = (props) => {
-  const dispatch =useDispatch()
-
-  const post_list = useSelector((state) => state.post.list);
-  console.log(post_list);
-
   const post_id = props.match.params.postid;
+  const dispatch = useDispatch();
   console.log(post_id)
+  const post_list = useSelector((state) => state.post.list);
+  console.log(post_list)
+ 
+  let _post = post_list.find((p) => p.post_id=== post_id);
+  console.log(_post)
+//   React.useEffect(() => {
 
-  let _post = post_list.find((p) => p.post_id === post_id);
-  console.log(_post);
+//     dispatch(postActions.getOnePostFB(post_id))
+// }, [])
 
-  React.useEffect(()=>{
-    if(post_id){
-      return;
-    }
-    dispatch(postActions.getOnePostFB(post_id)) 
-  },[])
-
-  return (
+    return (
       <React.Fragment>
         <Grid width="40%" margin="30px auto" padding="16px" box_shadow border_radius="10px">
           <Grid is_flex padding="16px">
@@ -40,15 +35,15 @@ const PostDetail = (props) => {
           </Grid>
           <Grid>
             <Text>가게이름</Text>
-            <Text bold size="20px">{_post.title}</Text>
+            <Text bold size="20px">{_post[0].title}</Text>
           </Grid>
           <Grid>
             <Text>위치</Text>
-            <Text bold size="20px">{_post.location}</Text>
+            <Text bold size="20px">{_post[0].location}</Text>
           </Grid>
           <Grid>
             <Text>한줄평</Text>
-            <Text bold size="20px">{_post.comment}</Text>
+            <Text bold size="20px">{_post[0].comment}</Text>
           </Grid>
 
           <Grid padding="16px 0px" is_flex>
@@ -56,7 +51,9 @@ const PostDetail = (props) => {
         </Grid>
       </React.Fragment>
     );
-  }
+  
+
+};
 
 const Style = styled.div`
   width: 100%;
