@@ -13,7 +13,7 @@ const PostList = (props) => {
     const user_nick = localStorage.getItem("user_nick")
 
     React.useEffect(() => {
-           dispatch(postActions.getPostFB());
+        dispatch(postActions.getPostFB());
     }, []);
   
     return (

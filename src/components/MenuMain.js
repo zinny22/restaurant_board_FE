@@ -12,26 +12,26 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import { actionCreators as postActions } from "../redux/modules/post";
+import { useDispatch, useSelector} from "react-redux";
+import { history } from "../redux/configureStore";
 
 const settings = ['수정', '삭제'];
 
-const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+const ResponsiveAppBar = (props) => {
+
+  const dispatch = useDispatch();
+  
+  React.useEffect(() => {
+    dispatch(postActions.getPostFB());
+  }, []);
+  const post_list = useSelector((state)=>state.post.list);
+  console.log(post_list)
+
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   return (
@@ -55,14 +55,15 @@ const ResponsiveAppBar = () => {
                 vertical: 'top',
                 horizontal: 'right',
               }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              open={Boolean(anchorElUser)}>
+                
+                <MenuItem key={settings[0]} onClick={()=>{history.push(`/editpost/${post_list.post_id}`)}}>
+                  <Typography textAlign="center">수정</Typography>
                 </MenuItem>
-              ))}
+                <MenuItem key={settings[1]} onClick={()=>{dispatch(postActions.deletePostFB(post_list.post_id))}}>
+                  <Typography textAlign="center">삭제</Typography>
+                </MenuItem>
+
             </Menu>
           </Box>
         </Toolbar>
