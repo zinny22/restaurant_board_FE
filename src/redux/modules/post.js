@@ -82,6 +82,7 @@ const getPostFB = () => {
 const deletePostFB =(post_id=null)=>{
     return function(dispatch, getState,{history}){
         const _post_idx = getState().post.list.findIndex((p)=>p.post_id===post_id)
+        window.alert("삭제되었습니다")
         instance.delete(`/api/getpost/delete/${post_id}`,{},)
         .then(function(response){
             dispatch(deletePost(_post_idx))
@@ -94,6 +95,7 @@ const deletePostFB =(post_id=null)=>{
 
 const editPostFB =(post_id=null, post={})=>{
     return function(dispatch ,getState, {history}){
+        window.alert("수정되었습니다")
         instance.patch(`/api/getpost/modify/${post_id}`,
         { title :post.title, location:post.location, comment:post.comment,})
         .then(function(response){
@@ -104,7 +106,7 @@ const editPostFB =(post_id=null, post={})=>{
         })
     }}
 
-    const getOnePostFB =(post_id)=>{
+const getOnePostFB =(post_id)=>{
     return function(dispatch, getState, {history}){
         instance.get(`/api/getpost/${post_id}`, {})
         .then(function (response) {

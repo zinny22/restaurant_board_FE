@@ -56,7 +56,7 @@ const RecipeReviewCard = () => {
                 src={preview ? preview : "http://via.placeholder.com/400x300"}
             />
             <CardContent>
-                <Grid>
+                <Grid margin="0px 0px 20px 0px">
                     <Input
                         value={title}
                         _onChange={(e) => {
@@ -66,7 +66,7 @@ const RecipeReviewCard = () => {
                         placeholder="가게 이름을 적어주세요"
                     />
                 </Grid>
-                <Grid>
+                <Grid margin="0px 0px 20px 0px">
                     <Input
                         value={location}
                         _onChange={(e) => {
@@ -76,7 +76,7 @@ const RecipeReviewCard = () => {
                         placeholder="위치를 적어주세요"
                     />
                 </Grid>
-                <Grid>
+                <Grid margin="0px 0px 20px 0px">
                     <Input
                         value={comment}
                         _onChange={(e) => {
