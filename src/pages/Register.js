@@ -45,10 +45,18 @@ const Register = (props) => {
   };
 
   const idDuplcheck = () => {
+    if (id === "") {
+      window.alert("아이디를 입력하여 주세요");
+      return;
+    }
     dispatch(userActions.idDuplcheckDB(id));
   };
 
   const nickDuplcheck = () => {
+    if (nick === "") {
+      window.alert("닉네임을 입력하여 주세요");
+      return;
+    }
     dispatch(userActions.nickDuplcheckDB(nick));
   };
 
