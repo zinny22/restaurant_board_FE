@@ -48,10 +48,14 @@ const MyButton = styled.button`
   transition: ease all .1s;
   @media only screen and (max-width: 960px) {
     width: ${(props) => (props.width ? "30%" : "")};
-    height: ${(props) => (props.height ? "45px" : "")};}
+    height: ${(props) => (props.height ? "100%" : "")};
+    padding: ${(props) => (props.padding ? "5%" : "")};
+  }
   @media only screen and (max-width: 650px) {
-    width: ${(props) => (props.width ? "40%" : "")};
-    height: ${(props) => (props.height ? "45px" : "")};}
+    width: ${(props) => (props.width ? "30%" : "")};
+    height: ${(props) => (props.height ? "100%" : "")};
+    padding: ${(props) => (props.padding ? "5%" : "")};
+  }  
 `
 
 export default Button;
