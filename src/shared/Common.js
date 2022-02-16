@@ -12,7 +12,7 @@ export const nicknamecheck = (nick) => {
 };
 
 export const pwdcheck = (pwd) => {
-  let _regPwd = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/;
+  let _regPwd = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#*-_])[A-Za-z\d!@#*-_]{8,16}$/;
 
   return _regPwd.test(pwd);
 };
