@@ -36,7 +36,6 @@ const MyButton = styled.button`
   cursor: ${(props) => (props.cursor)};
   width: ${(props) => props.width};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-  /* background: linear-gradient(45deg, #F9D893 30%, #F6BB43 90%); */
   background-color: #f68843;
   border: 0;
   border-radius: 3px;

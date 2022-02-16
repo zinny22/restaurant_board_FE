@@ -4,7 +4,7 @@ import { FaStar } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as starActions } from "../redux/modules/star";
 const colors = {
-    orange: "#FFBA5A",
+    orange: "#f68843",
     grey: "#a9a9a9"
 
 };
