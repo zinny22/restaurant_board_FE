@@ -76,37 +76,6 @@ const getPostFB = () => {
 }
 
 
-<<<<<<< HEAD
-const deletePostFB = (post_id = null) => {
-    return function (dispatch, getState, { history }) {
-        const _post_idx = getState().post.list.findIndex((p) => p.post_id === post_id)
-        console.log(_post_idx)
-        // instance.delete(`/api/getpost/delete/${post_id}`,{},)
-        // .then(function(response){
-        //     console.log(response)
-        //     dispatch(deletePost(_post_idx))
-        //     window.location.reload()
-        // }).catch((error) => {
-        //     console.error("Error removing document: ", error);
-        // });
-    }
-}
-
-const editPostFB = (post_id = null, post = {}) => {
-    return function (dispatch, getState, { history }) {
-        // console.log(post)
-        instance.patch(`/api/getpost/modify/${post_id}`,
-            { title: post.title, location: post.location, comment: post.comment, })
-            .then(function (response) {
-                console.log(response)
-                dispatch(editPost(post_id, { ...post }))
-                history.replace('/')
-            }).catch((error) => {
-                console.log(error)
-            })
-    }
-}
-=======
 const deletePostFB =(post_id=null)=>{
     return function(dispatch, getState,{history}){
         const _post_idx = getState().post.list.findIndex((p)=>p.post_id===post_id)
@@ -132,7 +101,7 @@ const editPostFB =(post_id=null, post={})=>{
             console.log(error)
         })
     }}
->>>>>>> 5721c2e9a48eabdfd54cac9c412469bcccd8cd42
+
 
 
 export default handleActions(
