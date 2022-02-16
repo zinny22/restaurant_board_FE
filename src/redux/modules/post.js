@@ -109,17 +109,12 @@ const editPostFB =(post_id=null, post={})=>{
  
 const getOnePostFB =(post_id)=>{
     return function(dispatch, getState, {history}){
-<<<<<<< HEAD
+
         instance.get(`/api/getpost/${post_id}`, {})
-        .then(function (response) {
-            console.log(response.data)
-          
-=======
-        instance.get('/api/main', {})
         .then(function (response) {
             console.log(response.data.response)
             const postDB = response.data.response
-            console.log(postDB)
+            
             const post_list = []
             postDB.forEach((v, i) => {
                 let list = {
@@ -138,8 +133,7 @@ const getOnePostFB =(post_id)=>{
             })
             const _post = post_list.find((p)=>p.post_id = post_id)
             console.log(_post)
-            dispatch(getPost(_post))
->>>>>>> 0213008cc18224638e5a6043bef5488c91a4e38d
+            dispatch(getOnePost(_post))
         })
         .catch(function (error) { console.log(error) })
     }
