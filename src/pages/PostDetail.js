@@ -11,14 +11,11 @@ const PostDetail = (props) => {
   const dispatch = useDispatch()
   const post_id = props.match.params.postid;
 
-  
   React.useEffect(()=>{
     dispatch(postActions.getOnePostFB(post_id)) 
   },[])
-
+  
   const post = useSelector((state) => state.post.detail);
-  console.log(post)
-
   return (
 
       <React.Fragment>
@@ -48,8 +45,6 @@ const PostDetail = (props) => {
         </Grid>
       </React.Fragment>
     );
-  
-
 };
 
 const Style = styled.div`

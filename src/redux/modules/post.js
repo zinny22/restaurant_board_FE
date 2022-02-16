@@ -57,7 +57,6 @@ const getPostFB = () => {
     return function (dispatch, getState, { history }) {
         instance.get('/api/main', {})
             .then(function (response) {
-                console.log(response.data.response)
                 const postDB = response.data.response
                 const post_list = []
                 postDB.forEach((v, i) => {
@@ -85,7 +84,6 @@ const deletePostFB =(post_id=null)=>{
         const _post_idx = getState().post.list.findIndex((p)=>p.post_id===post_id)
         instance.delete(`/api/getpost/delete/${post_id}`,{},)
         .then(function(response){
-            console.log(response)
             dispatch(deletePost(_post_idx))
             window.location.reload()
         }).catch((error) => {

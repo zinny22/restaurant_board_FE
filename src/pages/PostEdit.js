@@ -18,7 +18,6 @@ const PostEdit = (props) => {
 
     React.useEffect(()=>{
         if(!_post){
-            console.log('포스트정보가 없음')
             history.replace('/')
             return;
         }

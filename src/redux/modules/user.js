@@ -63,11 +63,6 @@ const idDuplcheckDB = (id) => {
         console.log(res);
         window.alert(res.data.alert);
       });
-
-    // .catch((error) => {
-    //   console.log(error);
-    //   window.alert(error.data.fail);
-    // });
   };
 };
 
@@ -83,11 +78,6 @@ const nickDuplcheckDB = (nick) => {
         console.log(res);
         window.alert(res.data.alert);
       });
-
-    // .catch((error) => {
-    //   console.log(error);
-    //   window.alert(error.data.fail);
-    // });
   };
 };
 
@@ -123,7 +113,6 @@ const actionCreators = {
   getUser,
   loginDB,
   signUpDB,
-  // loginCheckDB,
   logoutDB,
   idDuplcheckDB,
   nickDuplcheckDB,
