@@ -44,5 +44,4 @@ const ItemStyle = styled.div`
     width: 20%;
     `;
 
-
 export default StarMain;
