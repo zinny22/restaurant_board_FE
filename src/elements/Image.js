@@ -39,7 +39,7 @@ const AspectOutter = styled.div`
     display: flex;
     ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
     ${(props) => (props.marginLeft ? `margin-left: ${props.marginLeft};` : "")}
-    @media only screen and (max-width: 500px) { min-width: 70%}
+    @media only screen and (max-width: 500px) { min-width : 70%}
 `
 
 const AspectInner = styled.div`

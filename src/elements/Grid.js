@@ -59,8 +59,9 @@ const GridBox = styled.div`
   ${(props)=> (props.center?`text-align : center`:"")}
   ${(props)=>(props.border? `border: ${props.border};` : "")}
   ${(props)=>(props.border_radius? `border-radius: ${props.border_radius};` : "")}
+  ${(props)=>(props.box_shadow? `box-shadow: rgb(222 222 222) 0px 2px 4px 0px, #fff 0px 0px 0px 1px;` : "")}
   :hover{
-    ${(props)=>(props.box_shadow? `box-shadow: rgba(246, 136, 67, 0.3) 0px 6px 24px 0px, #b7e4c7 0px 0px 0px 1px;` : "")}
+    ${(props)=>(props.box_shadow? `box-shadow: rgb(222 222 222) 0px 6px 18px 0px` : "")}
   }
 `;
 

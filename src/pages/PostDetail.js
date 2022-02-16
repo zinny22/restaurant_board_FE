@@ -16,7 +16,7 @@ const PostDetail = (props) => {
   if(post_id){
     return (
       <React.Fragment>
-        <Grid width="40%" margin="30px auto" padding="16px" border ="1px solid #f68843" border_radius="10px">
+        <Grid width="40%" margin="30px auto" padding="16px" box_shadow border_radius="10px">
           <Grid is_flex padding="16px">
             <Text size="25px">{_post.user_nick}</Text>
             <Text color="gray" size="16px">{moment(_post.createDate).format('YYYY/MM/DD - HH:mm:ss')}</Text>

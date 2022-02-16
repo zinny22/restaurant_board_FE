@@ -32,8 +32,7 @@ const P = styled.p`
   transition: ease all .1s;
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? "700" : "400")};
-  @media only screen and (max-width: 500px) {
-  }
+  @media only screen and (max-width: 500px) {min-width: 70%}
 `;
 
 
