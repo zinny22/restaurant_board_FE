@@ -2,19 +2,31 @@ import React from "react";
 import { Grid, Image, Text} from "../elements/Index";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
 import styled from "styled-components";
 import moment from "moment";
 
 
 const PostDetail = (props) => {
+  const dispatch =useDispatch()
+
   const post_list = useSelector((state) => state.post.list);
   console.log(post_list);
+
   const post_id = props.match.params.postid;
+  console.log(post_id)
+
   let _post = post_list.find((p) => p.post_id === post_id);
   console.log(_post);
 
-  if(post_id){
-    return (
+  React.useEffect(()=>{
+    if(post_id){
+      return;
+    }
+    dispatch(postActions.getOnePostFB(post_id)) 
+  },[])
+
+  return (
       <React.Fragment>
         <Grid width="40%" margin="30px auto" padding="16px" box_shadow border_radius="10px">
           <Grid is_flex padding="16px">
@@ -45,8 +57,6 @@ const PostDetail = (props) => {
       </React.Fragment>
     );
   }
-
-};
 
 const Style = styled.div`
   width: 100%;

@@ -40,28 +40,6 @@ const Post =(props)=>{
                 </div>
             </Cards>
         </React.Fragment>
-        // <React.Fragment>
-        //         <Grid 
-        //         margin="30px auto" 
-        //         width="400px" 
-        //         border_radius="10px"
-        //         box_shadow
-        //         padding="16px"
-        //         bg="white">
-        //             <Grid is_end width="100px">
-        //                 {props.is_me && <Button height="35px"  margin="0px 3px" _onClick={()=>{history.push(`/editpost/${props.post_id}`)}}>수정</Button>}
-        //                 {props.is_me && <Button height="35px"  _onClick={()=>{dispatch(postActions.deletePostFB(props.post_id))}}>삭제</Button>}
-        //             </Grid> 
-        //             <Grid is_flex padding="16px">
-        //                 <Text size="23px">{props.user_nick}</Text>
-        //                 <Text color="gray" size="16px">{moment(props.createDate).format('YYYY/MM/DD - HH:mm:ss')}</Text>
-        //             </Grid>
-        //             <Grid padding="16px">
-        //                 <Text size="32px" center>📍 {props.title}</Text>
-        //                 <Grid _onClick ={()=>{history.push(`/getpost/${props.post_id}`)}} padding="0px"><Image src={props.image_url} /></Grid>
-        //             </Grid>
-        //         </Grid>
-        // </React.Fragment>   
     )
 }
 
