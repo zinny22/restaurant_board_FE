@@ -6,33 +6,23 @@ import styled from "styled-components";
 import { history} from '../redux/configureStore'
 
 const PostEdit = (props) => {
-    const dispatch = useDispatch();
-    const post_list = useSelector((state)=>state.post.list)
+
+    const dispatch = useDispatch();   
     const post_id =props.match.params.postid;
-    let _post = post_list.find((p)=> p.post_id === post_id)
-
-    const [title, setTitle] = React.useState(_post? _post.title:"");
-    const [location, setLocation] = React.useState(_post?_post.location:"");
-    const [comment, setComment] = React.useState(_post?_post.comment:"");
     
-
     React.useEffect(()=>{
-        if(!_post){
+        if(!post){
             history.replace('/')
             return;
         }
+        dispatch(postActions.getOnePostFB(post_id)) 
     },[])
 
-    const changeComment =(e)=>{
-        setComment(e.target.value);
-    }
-
-    const changeLocation =(e)=>{
-        setLocation(e.target.value);
-    }
-    const changeTitle =(e)=>{
-        setTitle(e.target.value);
-    }
+    const post = useSelector((state)=>state.post.detail)
+    
+    const [title, setTitle] = React.useState(post? post.title:"");
+    const [location, setLocation] = React.useState(post?post.location:"");
+    const [comment, setComment] = React.useState(post?post.comment:"");
 
     return (
         <React.Fragment>
@@ -48,15 +38,15 @@ const PostEdit = (props) => {
                         margin="10px 0px 0px 0px"
                         shape="rectangle"
                         width="50%"
-                        src={_post.image_url}
+                        src={post.image_url}
                     />
                 </Style>
             </Grid>
 
-            <Grid margin="0px 0px 20px 0px">
+           <Grid margin="0px 0px 20px 0px">
                 <Input
-                    value={title}
-                    _onChange={changeTitle}
+                    defaultValue={post.title}
+                    _onChange={(e)=>{setTitle(e.target.value)}}
                     label="가게 이름"
                     placeholder="가게 이름을 적어주세요"
                 />
@@ -64,8 +54,8 @@ const PostEdit = (props) => {
 
             <Grid margin="0px 0px 20px 0px">
                 <Input
-                    value={location}
-                    _onChange={changeLocation}
+                    defaultValue={post.location}
+                    _onChange={(e)=>{setLocation(e.target.value)}}
                     label="위치"
                     placeholder="위치를 적어주세요"
                 />
@@ -74,8 +64,8 @@ const PostEdit = (props) => {
 
             <Grid>
                 <Input
-                    value={comment}
-                    _onChange={changeComment}
+                    defaultValue={post.comment}
+                    _onChange={(e)=>{setComment(e.target.value)}}
                     label="한줄 평"
                     placeholder="한줄 평을 적어주세요"
                 />
@@ -95,8 +85,7 @@ const PostEdit = (props) => {
 
 const Style = styled.div`
   width: 100%;
-  minHeight: 150px;
-  boxSizing: border-box;
- 
+  min-height: 150px;
+  box-sizing: border-box;
 `
 export default PostEdit

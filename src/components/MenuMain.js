@@ -19,16 +19,8 @@ import { history } from "../redux/configureStore";
 const settings = ['수정', '삭제'];
 
 const ResponsiveAppBar = (props) => {
-
   const dispatch = useDispatch();
-  
-  React.useEffect(() => {
-    dispatch(postActions.getPostFB());
-  }, []);
-  const post_list = useSelector((state)=>state.post.list);
-
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -56,10 +48,10 @@ const ResponsiveAppBar = (props) => {
               }}
               open={Boolean(anchorElUser)}>
                 
-                <MenuItem key={settings[0]} onClick={()=>{history.push(`/editpost/${post_list.post_id}`)}}>
+                <MenuItem key={settings[0]} onClick={()=>{history.push(`/editpost/${props.post_id}`)}}>
                   <Typography textAlign="center">수정</Typography>
                 </MenuItem>
-                <MenuItem key={settings[1]} onClick={()=>{dispatch(postActions.deletePostFB(post_list.post_id))}}>
+                <MenuItem key={settings[1]} onClick={()=>{dispatch(postActions.deletePostFB(props.post_id))}}>
                   <Typography textAlign="center">삭제</Typography>
                 </MenuItem>
 

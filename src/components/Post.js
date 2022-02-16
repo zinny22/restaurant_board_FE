@@ -25,8 +25,10 @@ const Post =(props)=>{
                     </Btn> */}
                     <Nick>
                         <Text size="120%">{user_nick}</Text>
-                        <Text color ="gray">{createDate}</Text>
-                        {props.is_me && <MenuMain/>}
+                        <div style={{display:"flex", alignItems:"center", marginLeft:"6px"}}>
+                            <Text color ="gray">{createDate}</Text>
+                            {props.is_me && <MenuMain post_id={props.post_id}/>}
+                        </div>
                     </Nick>
                     <Text center size="150%">📍{title}</Text>
                     <Grid is_flex>
@@ -35,11 +37,12 @@ const Post =(props)=>{
                     <StarMain score={score}/>
                     </Grid>
                 </TextWrap>
-                
-                <div style={{borderRadius:"10px",overflow:"hidden"}}
-                onClick ={()=>{history.push(`/getpost/${props.post_id}`)}}>
+                <div onClick ={()=>{history.push(`/getpost/${props.post_id}`)}}>
+                    <Img>
                     <Image src={props.image_url}/>
+                    </Img>
                 </div>
+
             </Cards>
         </React.Fragment>
     )
@@ -70,9 +73,10 @@ const Nick = styled.div`
     align-items: center;
 `
 
-const Btn = styled.div`
-    display: flex;
-    width: 40%;
+const Img = styled.div`
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    overflow: hidden;
 `
 
 
