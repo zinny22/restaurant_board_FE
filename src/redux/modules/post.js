@@ -6,11 +6,13 @@ const GET_POST = "GET_POST";
 const ADD_POST = "ADD_POST";
 const DELETE_POST = "DELETE_POST";
 const EDIT_POST = "EDIT_POST";
+const GET_ONE_POST ="GET_ONE_POST";
 
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
 const addPost = createAction(ADD_POST, (post) => ({ post }));
 const deletePost = createAction(DELETE_POST, (post_index) => ({ post_index }))
 const editPost = createAction(EDIT_POST, (post_id, post) => ({ post_id, post }))
+const getOnePost = createAction(GET_ONE_POST, (post)=>({post}))
 
 const initialState = {
     list: [],
@@ -106,6 +108,52 @@ const editPostFB =(post_id=null, post={})=>{
     }}
 
 
+const getOnePostFB =(post_id)=>{
+    return function(dispatch, getState, {history}){
+        console.log(post_id)
+    }
+}    
+// const getOnePostFB =(post_id)=>{
+//     return function(dispatch, getState, {history}){
+//         instance.get('/api/main', {})
+//         .then(function (response) {
+//             console.log(response.data.response)
+//             const postDB = response.data.response
+//             console.log(postDB)
+//             const post_list = []
+//             postDB.forEach((v, i) => {
+//                 let list = {
+//                     title: v.title,
+//                     user_nick: v.user_nick,
+//                     createDate: v.createdDate,
+//                     post_id: v._id,
+//                     image_url: v.image_url,
+//                     comment: v.comment,
+//                     location: v.location,
+//                     score: v.score,
+//                 }
+                
+//                 post_list.push(list)
+            
+//             })
+//             dispatch(getPost(post_list))
+//         })
+//         .catch(function (error) { console.log(error) })
+//         // console.log(post_id)
+//         // const _post = getState().post.list.find((p)=>p.post_id === post_id)
+//         // console.log(_post)
+//         // const post_list = {
+//         //     title: _post.title,
+//         //     location: _post.location,
+//         //     comment: _post.comment,
+//         //     image_url: _post.image_url,
+//         //     score: _post.score,
+//         // }
+//         // let post = { ...post_list }
+//         // console.log(post)
+//         // dispatch(getPost([post]))
+//     }
+// }
 
 export default handleActions(
     {
@@ -126,6 +174,9 @@ export default handleActions(
         [EDIT_POST]: (state, action) => produce(state, (draft) => {
             let idx = draft.list.findIndex((p) => p.post_id === action.payload.post_id)
             draft.list[idx] = { ...draft.list[idx], ...action.payload.post }
+        }),
+        [GET_ONE_POST]: (state, action) => produce(state, (draft)=>{
+            draft.list=action.payload.post
         })
     },
     initialState
@@ -139,6 +190,8 @@ const actionCreators = {
     deletePostFB,
     deletePost,
     editPostFB,
-    editPost
+    editPost,
+    getOnePostFB,
+    getOnePost,
 }
 export { actionCreators };
