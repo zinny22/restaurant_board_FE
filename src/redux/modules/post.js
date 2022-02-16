@@ -68,9 +68,7 @@ const getPostFB = () => {
                         location: v.location,
                         score: v.score,
                     }
-                    
                     post_list.push(list)
-                
                 })
                 dispatch(getPost(post_list))
             })
