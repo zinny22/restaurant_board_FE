@@ -52,13 +52,12 @@ const signUpDB = (id, nickname, password, confirmpwd) => {
 };
 
 //아이디 중복 제크 API
-const idDuplcheckDB = (id, nick) => {
+const idDuplcheckDB = (id) => {
   return function (dispatch, getState, { history }) {
     console.log(id);
     instance
       .post("/api/register/check", {
         user_id: id,
-        user_nick: nick,
       })
       .then((res) => {
         console.log(res);
@@ -73,12 +72,11 @@ const idDuplcheckDB = (id, nick) => {
 };
 
 //닉네임 중복 체크
-const nickDuplcheckDB = (id, nick) => {
+const nickDuplcheckDB = (nick) => {
   return function (dispatch, getState, { history }) {
     console.log(nick);
     instance
       .post("/api/register/check", {
-        user_id: id,
         user_nick: nick,
       })
       .then((res) => {
