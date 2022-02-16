@@ -3,6 +3,7 @@ import { Grid, Text, Button, Image, Input } from "../elements/Index";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import { history} from '../redux/configureStore'
 
 const PostEdit = (props) => {
     const dispatch = useDispatch();
@@ -15,14 +16,13 @@ const PostEdit = (props) => {
     const [comment, setComment] = React.useState(_post?_post.comment:"");
     
 
-    // React.useEffect(()=>{
-    //     if(is_edit && !_post){
-    //         console.log('포스트정보가 없음')
-    //         history.replace('/')
-
-    //         return;
-    //     }
-    // },[])
+    React.useEffect(()=>{
+        if(!_post){
+            console.log('포스트정보가 없음')
+            history.replace('/')
+            return;
+        }
+    },[])
 
     const changeComment =(e)=>{
         setComment(e.target.value);
@@ -37,13 +37,13 @@ const PostEdit = (props) => {
 
     return (
         <React.Fragment>
-            <Grid width="50%" margin="30px auto" padding="16px" border ="1px solid #f68843" border_radius="10px">
+            <Grid width="50%" margin="30px auto" padding="16px" box_shadow border_radius="10px">
             <Grid padding="16px">
                 <Text margin="0px" size="36px" bold center>
                   게시글 수정
                 </Text>
             </Grid>
-            <Grid>
+            <Grid margin="0px 0px 50px 0px">
                 <Style>
                     <Image
                         margin="10px 0px 0px 0px"
@@ -54,7 +54,7 @@ const PostEdit = (props) => {
                 </Style>
             </Grid>
 
-            <Grid>
+            <Grid margin="0px 0px 20px 0px">
                 <Input
                     value={title}
                     _onChange={changeTitle}
@@ -63,7 +63,7 @@ const PostEdit = (props) => {
                 />
             </Grid>
 
-            <Grid>
+            <Grid margin="0px 0px 20px 0px">
                 <Input
                     value={location}
                     _onChange={changeLocation}

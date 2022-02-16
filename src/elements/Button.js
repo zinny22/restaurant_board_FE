@@ -35,11 +35,17 @@ Button.defaultProps = {
 const MyButton = styled.button`
   cursor: ${(props) => (props.cursor)};
   width: ${(props) => props.width};
+  padding: ${(props)=>(props.padding)};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
+<<<<<<< HEAD
   background-color: #f68843;
+=======
+  /* background: linear-gradient(45deg, #F9D893 30%, #F6BB43 90%); */
+  background-color: #ff9800;
+>>>>>>> 5422d70eb325024b18431a057c2fcdb7a2159fd3
   border: 0;
   border-radius: 3px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
+  box-shadow: 0 1px 1px 1px rgba(255, 105, 135, 0.3);
   color: white;
   height: ${(props) => props.height};
   transition: ease all .1s;
