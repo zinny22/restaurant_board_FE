@@ -6,6 +6,7 @@ import { history } from "../redux/configureStore";
 import moment from "moment"
 import styled from "styled-components";
 import StarMain from "./StarMain";
+import MenuMain from "./MenuMain";
 const Post =(props)=>{
     const dispatch = useDispatch();
     const user_nick = props.user_nick
@@ -25,12 +26,14 @@ const Post =(props)=>{
                     <Nick>
                         <Text size="120%">{user_nick}</Text>
                         <Text color ="gray">{createDate}</Text>
+                        <MenuMain/>
                     </Nick>
                     <Text center size="150%">📍{title}</Text>
                     <Grid is_end>
                     <StarMain score={score}/>
                     </Grid>
                 </TextWrap>
+                
                 <div style={{borderRadius:"10px",overflow:"hidden"}}
                 onClick ={()=>{history.push(`/getpost/${props.post_id}`)}}>
                     <Image src={props.image_url}/>
