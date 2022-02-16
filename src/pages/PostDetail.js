@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import moment from "moment";
-
+// import CommentWrite from "../components/CommentWrite";
 
 const PostDetail = (props) => {
   const dispatch = useDispatch()
@@ -42,6 +42,7 @@ const PostDetail = (props) => {
           </Grid>
           <Grid padding="16px 0px" is_flex>
           </Grid>
+          {/* <CommentWrite/> */}
         </Grid>
       </React.Fragment>
     );
