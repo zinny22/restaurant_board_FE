@@ -63,6 +63,9 @@ const GridBox = styled.div`
   :hover{
     ${(props)=>(props.box_shadow? `box-shadow: rgb(222 222 222) 0px 6px 18px 0px` : "")}
   }
+  @media only screen and (max-width: 960px) {
+   
+    }
 `;
 
 export default Grid;

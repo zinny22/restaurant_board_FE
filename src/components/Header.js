@@ -60,7 +60,7 @@ const Header = () => {
               variant="h6" //글자크기
               noWrap
               component="div"
-              sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+              sx={{ flexGrow: 1,  display: { xs: "none", md: "flex" } }}
             >
               {user_nick}님 안녕하세요
             </Typography>
@@ -69,7 +69,7 @@ const Header = () => {
               variant="h6"
               noWrap
               component="div"
-              sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+              sx={{ flexGrow: 1, cursor:"pointer",display: { xs: "flex", md: "none" } }}
               onClick={handleCloseNavMenu}
             >
               🍰 맛있는거 4조 🍰
