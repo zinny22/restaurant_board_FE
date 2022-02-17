@@ -2,35 +2,24 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Grid, Text } from "../elements/Index";
 import { actionCreators as commentActions } from "../redux/modules/comment";
+import moment from "moment";
 
 const CommentList =(props)=>{
   console.log(props)
 
   const post_id = props.post
   console.log(post_id)
-  console.log(props.comment)
+  console.log(props.comment_list[post_id])
+  const comments = props.comment_list[post_id]
 
-  // const comment_list= props.comment[post_id]
-  // console.log(comment_list)
   const dispatch = useDispatch()
 
-  React.useEffect(()=>{
-    dispatch(commentActions.getOneCommentFB(post_id))
-  },[])
-
-  const comment_list = useSelector((state)=>state.comment.details)
-  console.log(comment_list)
-  console.log(comment_list[post_id])
-  // console.log(comment_list[post_id])
-  // const comments = comment_list[post_id]
-  // console.log(comments)
-
-  // if(comment_list[post_id]===post_id){
     return (
       <React.Fragment>
-        {/* <CommentItem {...comment_list}/> */}
-          {comment_list[post_id].map((p,idx)=>{
-            return (<CommentItem key ={idx} {...p}/>)
+          { comments&& comments.map((p,idx)=>{
+            if(p.articleId._id ===post_id){
+              return (<CommentItem key ={idx} {...p}/>)
+            }
           })}
       </React.Fragment>
     )
@@ -40,15 +29,14 @@ const CommentList =(props)=>{
 export default CommentList;
 
 const CommentItem =(props)=>{
-  console.log(props)
-  // const {user_nick, user_comment, createDate} =props
 
+  const createDate = moment(props.createDate).format('YYYY/MM/DD - HH:mm:ss')
   return(
     <Grid is_flex>
-      <Text bold>{props.user_nick}</Text>
-      <Grid is_flex margin="0px 4px">
-        <Text>{props.user_comment}</Text>
-        <Text>{props.createDate}</Text>  
+        <Text size="19px">{props.user_nick}</Text>
+      <Grid is_flex margin="0px 10px 0px 30px">
+        <Text size="19px" bold>{props.user_comment}</Text>
+        <Text color="gray">{createDate}</Text>  
       </Grid>
     </Grid>
   )

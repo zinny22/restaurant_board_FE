@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import CommentWrite from "../components/CommentWrite";
 import CommentList from "../components/CommentList";
+import StarMain from "../components/StarMain";
 
 
 const PostDetail = (props) => {
@@ -15,45 +16,58 @@ const PostDetail = (props) => {
 
   React.useEffect(()=>{
     dispatch(postActions.getOnePostFB(post_id))
-    // dispatch(commentActions.getOneCommentFB(post_id))
+    dispatch(commentActions.getOneCommentFB(post_id))
   },[])
-  // const comment_list = useSelector((state)=>state.comment.details)
+  const comment_list = useSelector((state)=>state.comment.details)
   const post = useSelector((state) => state.post.detail);
   return (
 
       <React.Fragment>
-        <Grid width="40%" margin="30px auto" padding="16px" box_shadow border_radius="10px">
-          <Grid is_flex padding="16px">
+        <Grid width="50%" margin="30px auto" box_shadow border_radius="10px">
+          <div style={{
+            padding:"0px 30px",
+            display: "flex",
+            justifyContent: "flex-start"
+          }}>
             <Text size="25px">{post.user_nick}</Text>
-          </Grid>
-          <Grid>
-            <Style>
-              <Image src ={post.image_url}/>
-            </Style>
-          </Grid>
-          <Grid>
+          </div>
+          <div style={{
+            padding:"0px 10px 20px 0px",
+            display: "flex",
+            justifyContent: "flex-end",
+          }}>
+            <StarMain score={post.score}/>
+          </div>
+            <Image src ={post.image_url}/>
+          <Grid  padding="16px">
             <Text>가게이름</Text>
-            <Text bold size="20px">{post.title}</Text>
-          </Grid>
-          <Grid>
+            <Text bold size="25px">{post.title}</Text>
             <Text>위치</Text>
-            <Text bold size="20px">{post.location}</Text>
-          </Grid> 
-          <Grid>
+            <Text bold size="25px">{post.location}</Text>
             <Text>한줄평</Text>
-            <Text bold size="20px">{post.comment}</Text>
+            <Text bold size="25px">{post.comment}</Text>
           </Grid>
-          <Grid padding="16px 0px" is_flex>
-          </Grid>
+          <Wrap>
             <CommentWrite post ={post}/>
-            <CommentList post={post_id} />
+            <CommentList comment_list={comment_list} post={post_id} />
+          </Wrap>
         </Grid>
       </React.Fragment>
     );
 };
 
-const Style = styled.div`
-  width: 100%;
+const Wrap = styled.div`
+  padding: 16px;
+  @media only screen and (max-width: 960px) {
+    width: ${(props) => (props.width ? "30%" : "")};
+    height: ${(props) => (props.height ? "100%" : "")};
+    padding: ${(props) => (props.padding ? "5%" : "")};
+  }
+  @media only screen and (max-width: 650px) {
+    width: ${(props) => (props.width ? "30%" : "")};
+    height: ${(props) => (props.height ? "100%" : "")};
+    padding: ${(props) => (props.padding ? "5%" : "")};
+  }  
 `
 
 export default PostDetail;
