@@ -55,7 +55,8 @@ const HeartButton = (props) => {
 };
 
 const styles = {
-   fontSize:"20px"
+   fontSize:"20px",
+   cursor:"pointer"
     
 };
 
