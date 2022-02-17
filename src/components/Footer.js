@@ -3,6 +3,7 @@ import { Grid, Text } from "../elements/Index";
 
 const Footer = () => {
   return (
+    <div style={{bottom:"0", position: "fixed", width:"100%"}}>
     <Grid is_flex bg="#f68843" margin="auto" padding="5px">
       <Grid is_flex width="50%">
         <Text size="35px" margin="auto" color="white">
@@ -19,6 +20,7 @@ const Footer = () => {
         BE : 반장훈, 오세웅
       </Text>
     </Grid>
+    </div>
   );
 };
 
