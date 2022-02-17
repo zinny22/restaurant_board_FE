@@ -19,6 +19,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Upload from "../shared/Upload";
 import { actionCreators as postActions } from "../redux/modules/post";
 import Star from "./Star"
+import { history } from "../redux/configureStore";
 
 
 
@@ -89,7 +90,7 @@ const RecipeReviewCard = () => {
                 <Grid padding="16px" is_end >
                     <Button cursor="pointer" height="45px" width="20%" text="게시글 작성" _onClick={() => {
                         addPost()
-                        // history.push('/')
+                        history.push('/')
                     }}>
                     </Button>
                 </Grid>

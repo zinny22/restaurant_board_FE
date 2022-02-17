@@ -1,67 +1,61 @@
 import React from "react";
-import {Grid, Image, Text} from "../elements";
+import { useDispatch, useSelector } from "react-redux";
+import { Grid, Text } from "../elements/Index";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 
-import {useDispatch, useSelector} from "react-redux";
-import {actionCreators as commentActions} from "../redux/modules/comment";
+const CommentList =(props)=>{
+  console.log(props)
 
-const CommentList = (props) => {
-  const dispatch = useDispatch();
-  const comment_list = useSelector(state => state.comment.list);
-  
-  const {post_id} = props;
+  const post_id = props.post
+  console.log(post_id)
+  console.log(props.comment)
 
-  React.useEffect(() => {
-    if(!comment_list[post_id]){
-      // 코멘트 정보가 없으면 불러오기
-      dispatch(commentActions.getCommentFB(post_id));
-    }
-  }, []);
+  // const comment_list= props.comment[post_id]
+  // console.log(comment_list)
+  const dispatch = useDispatch()
 
-  // comment가 없거나, post_id가 없으면 아무것도 안넘겨준다!
-  if(!comment_list[post_id] || !post_id){
-    return null;
+  React.useEffect(()=>{
+    dispatch(commentActions.getOneCommentFB(post_id))
+  },[])
+
+  const comment_list = useSelector((state)=>state.comment.details)
+  console.log(comment_list)
+  console.log(comment_list[post_id])
+  // console.log(comment_list[post_id])
+  // const comments = comment_list[post_id]
+  // console.log(comments)
+
+  // if(comment_list[post_id]===post_id){
+    return (
+      <React.Fragment>
+        {/* <CommentItem {...comment_list}/> */}
+          {comment_list[post_id].map((p,idx)=>{
+            return (<CommentItem key ={idx} {...p}/>)
+          })}
+      </React.Fragment>
+    )
   }
-
-  return (
-    <React.Fragment>
-      <Grid padding="16px">
-        {comment_list[post_id].map(c => {
-          return (<CommentItem key={c.id} {...c}/>);
-        })}
-      </Grid>
-    </React.Fragment>
-  );
-};
-
-CommentList.defaultProps = {
-  post_id: null
-};
+// }
 
 export default CommentList;
 
+const CommentItem =(props)=>{
+  console.log(props)
+  // const {user_nick, user_comment, createDate} =props
 
-const CommentItem = (props) => {
-
-    const {user_profile, user_name, user_id, post_id, contents, insert_dt} = props;
-    return (
-        <Grid is_flex>
-            <Grid is_flex width="auto">
-                <Image shape="circle"/>
-                <Text bold>{user_name}</Text>
-            </Grid>
-            <Grid is_flex margin="0px 4px">
-                <Text margin="0px">{contents}</Text>
-                <Text margin="0px">{insert_dt}</Text>
-            </Grid>
-        </Grid>
-    )
+  return(
+    <Grid is_flex>
+      <Text bold>{props.user_nick}</Text>
+      <Grid is_flex margin="0px 4px">
+        <Text>{props.user_comment}</Text>
+        <Text>{props.createDate}</Text>  
+      </Grid>
+    </Grid>
+  )
 }
 
-CommentItem.defaultProps = {
-    user_profile: "",
-    user_name: "mean0",
-    user_id: "",
-    post_id: 1,
-    contents: "귀여운 고양이네요!",
-    insert_dt: '2021-01-01 19:00:00'
+CommentItem.defaultProps ={
+  user_nick:"jini",
+  user_comment:"이게 되네",
+  createDate:"2022-02-04 10:00:00"
 }

@@ -1,20 +1,23 @@
 import React from "react";
 import { Grid, Image, Text} from "../elements/Index";
 import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import moment from "moment";
-// import CommentWrite from "../components/CommentWrite";
+import CommentWrite from "../components/CommentWrite";
+import CommentList from "../components/CommentList";
+
 
 const PostDetail = (props) => {
   const dispatch = useDispatch()
   const post_id = props.match.params.postid;
 
   React.useEffect(()=>{
-    dispatch(postActions.getOnePostFB(post_id)) 
+    dispatch(postActions.getOnePostFB(post_id))
+    // dispatch(commentActions.getOneCommentFB(post_id))
   },[])
-  
+  // const comment_list = useSelector((state)=>state.comment.details)
   const post = useSelector((state) => state.post.detail);
   return (
 
@@ -42,7 +45,8 @@ const PostDetail = (props) => {
           </Grid>
           <Grid padding="16px 0px" is_flex>
           </Grid>
-          {/* <CommentWrite/> */}
+            <CommentWrite post ={post}/>
+            <CommentList post={post_id} />
         </Grid>
       </React.Fragment>
     );
