@@ -34,10 +34,15 @@ const RecipeReviewCard = () => {
     const [comment, setComment] = useState("");
     ;
     const addPost = () => {
+        if(title === "" || location === "" || comment === ""){
+            window.alert("맛집 정보를 작성해주세요!");
+            return;
+          }
         dispatch(postActions.addPostFB(title, location, comment, preview));
     };
 
     return (
+        <Grid>
         <Card sx={{}}>
             <div style={{ display: "flex", alignItems: "center", flexDirection: "row", }}>
                 <div style={{flexShrink: "0"}}>
@@ -90,13 +95,13 @@ const RecipeReviewCard = () => {
                 <Grid padding="16px" is_end >
                     <Button cursor="pointer" height="45px" width="20%" text="게시글 작성" _onClick={() => {
                         addPost()
-                        history.push('/')
                     }}>
                     </Button>
                 </Grid>
             </CardContent>
            
         </Card>
+        </Grid>
     );
 }
 export default RecipeReviewCard

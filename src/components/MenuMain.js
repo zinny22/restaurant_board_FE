@@ -21,10 +21,15 @@ const settings = ['수정', '삭제'];
 const ResponsiveAppBar = (props) => {
   const dispatch = useDispatch();
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
+  const handleCloseNavMenu = () => {
+    setAnchorElUser(null);
+
+  };
   return (
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 0 }}>
@@ -46,15 +51,15 @@ const ResponsiveAppBar = (props) => {
                 vertical: 'top',
                 horizontal: 'right',
               }}
-              open={Boolean(anchorElUser)}>
-                
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseNavMenu}>
+
                 <MenuItem key={settings[0]} onClick={()=>{history.push(`/editpost/${props.post_id}`)}}>
                   <Typography textAlign="center">수정</Typography>
                 </MenuItem>
                 <MenuItem key={settings[1]} onClick={()=>{dispatch(postActions.deletePostFB(props.post_id))}}>
                   <Typography textAlign="center">삭제</Typography>
                 </MenuItem>
-
             </Menu>
           </Box>
         </Toolbar>

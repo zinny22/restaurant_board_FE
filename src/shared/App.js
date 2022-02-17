@@ -8,7 +8,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PostDetail from "../pages/PostDetail";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
+
 
 // import {Grid, Button} from "./elements";
 import { ConnectedRouter } from "connected-react-router";
@@ -37,10 +37,9 @@ function App() {
         <Route path="/addpost" exact component={PostWrite} />
         <Route path="/editpost/:postid" exact component={PostEdit} />
         <Route path="/getpost/:postid" exact component={PostDetail} />
-        
         {/* 수정을 할때는 write id값이 필요하다 */}
       </ConnectedRouter>
-      <Footer />
+      
       {/* </Grid> */}
       {/* <Permit>
         <Button is_float text="+" _onClick={() => {history.push('/write');}}></Button>

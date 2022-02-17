@@ -21,7 +21,7 @@ const CommentWrite = (props) => {
           value={user_comment}
           _onChange={(e) => { setComment(e.target.value) }}
           placeholder="댓글을 입력해주세요:>" />
-        <Button width="50px" margin="0px 2px"
+        <Button width="50px" margin="0px 2px" cursor="pointer"
           _onClick={() => {
             addComment()
           }}>작성</Button>
