@@ -50,7 +50,7 @@ const Header = () => {
               variant="h5" //글자크기
               noWrap
               component="div"
-              sx={{ flexGrow: 8, display: { xs: "none", md: "flex" },}}
+              sx={{ flexGrow: 8, cursor:"pointer", display: { xs: "none", md: "flex" } }}
             >
               🍰 맛있는거 4조 🍰
             </Typography>

@@ -50,7 +50,7 @@ const Post = (props) => {
                
                 </TextWrap>
                 <div onClick={() => { history.push(`/getpost/${props.post_id}`) }}>
-                    <Img>
+                    <Img style={{cursor:"pointer"}}>
                         <Image src={props.image_url} />
                     </Img>
                 </div>
