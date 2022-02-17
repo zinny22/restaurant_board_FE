@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch} from "react-redux";
 import {Grid, Image,Button,Text} from "../elements/Index"
 import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as likeActions } from "../redux/modules/like";
 import { history } from "../redux/configureStore";
 import moment from "moment"
 import styled from "styled-components";
@@ -15,6 +16,12 @@ const Post =(props)=>{
     const createDate = moment(props.createDate).format('YYYY/MM/DD - HH:mm:ss')
     const score = props.score
     const post_id = props.post_id
+    const like_count = props.like_count
+
+    React.useEffect(() => {
+        dispatch(likeActions.getLikeFB(post_id))
+     }, []);
+   
     return(
         <React.Fragment>
             <Cards>
@@ -32,7 +39,9 @@ const Post =(props)=>{
                     </Nick>
                     <Text center size="150%">📍{title}</Text>
                     <Grid is_flex>
-                    좋아요:
+                     <div style={{flexShrink:"0"}}>
+                     {like_count}
+                     </div>
                     <HeartButton post_id={post_id}/>
                     <StarMain score={score}/>
                     </Grid>

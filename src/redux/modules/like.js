@@ -12,59 +12,31 @@ const setLike = createAction(SET_LIKE, (post_id, user_list) => ({
     post_id,
     user_list,
 }));
-const addLike = createAction(ADD_LIKE, (post_id, user_id) => ({
+const addLike = createAction(ADD_LIKE, (post_id, user_nick) => ({
     post_id,
-    user_id,
+    user_nick,
 }));
 
-const cancelLike = createAction(CANCEL_LIKE, (post_id, user_id) => ({
+const cancelLike = createAction(CANCEL_LIKE, (post_id, user_nick) => ({
     post_id,
-    user_id,
+    user_nick,
 }));
 
 const initialState = {
     list: {},
 };
 
-// const getLikeFB = (post_id) => {
-//   return function (dispatch, getState, { history }) {
-//     if (!post_id) {
-//       return;
-//     }
-
-//     const likeDB = firestore.collection("like");
-
-//     likeDB
-//       .where("post_id", "==", post_id)
-//       .get()
-//       .then((docs) => {
-//         let list = [];
-//         docs.forEach((doc) => {
-//           list.push(doc.data().user_id);
-//         });
-//         console.log(list);
-
-//         dispatch(setLike(post_id, list));
-//       })
-//       .catch((error) => {
-//         console.log("좋아요 정보를 가져올 수가 없네요ㅜㅜ", error);
-//       });
-//   };
-// };
-
-const addLikeFB = (post_id, user_nick) => {
+const getLikeFB = (post_id) => {
     return function (dispatch, getState, { history }) {
-        const is_local = localStorage.getItem("is_login")
-       
-        instance.post(`api/like/${post_id}`,
-            {      
-                user_nick: user_nick,
-                post_id: post_id,
-            }, 
-            instance.defaults.headers.common["Authorization"] = `Bearer ${is_local}`
+        instance.get(`api/getlike/${post_id}`,
+            {},
         ).then((res) => {
-            window.alert(res.data.success)
-            dispatch(addLike(post_id, user_nick))
+            const data = res.data.response
+            const user_list = []
+            data.forEach((doc) => {
+                user_list.push(doc.user_nick);
+            });
+            dispatch(setLike(post_id, user_list));
         })
             .catch((error) => {
                 console.log(error);
@@ -72,51 +44,72 @@ const addLikeFB = (post_id, user_nick) => {
     };
 };
 
-// const cancelLikeFB = (post_id) => {
-//   return function (dispatch, getState, { history }) {
-//     const likeDB = firestore.collection("like");
-//     const user_info = getState().user.user;
+const addLikeFB = (post_id, user_nick) => {
+    return function (dispatch, getState, { history }) {
+        const post = getState().post.list.find((l) => l.post_id === post_id);
+        const is_local = localStorage.getItem("is_login")
+        
+       
+        const idx = getState().post.list.findIndex((p) => p.post_id === post_id)
+        const _like_count= getState().post.list[idx]
+        const like_count = parseInt(_like_count.like_count)+1   
+       
+        instance.post(`api/like/${post_id}`,
+            {   like_count: like_count,
+                user_nick: user_nick,
+                post_id: post_id,
+            },
+            instance.defaults.headers.common["Authorization"] = `Bearer ${is_local}`
+        ).then((res) => {
+            console.log(res.data.response)
+            dispatch(addLike(post_id, user_nick))
+            if (post) {
+                dispatch(
+                  postActions.editPost(post_id, {
+                    like_count: parseInt(post.like_count) + 1,
+                  })
+                );
+              }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    };
+};
 
-//     likeDB
-//       .where("post_id", "==", post_id)
-//       .where("user_id", "==", user_info.uid)
-//       .get()
-//       .then((docs) => {
-//         let id = "";
-//         docs.forEach((doc) => (id = doc.id));
-//         likeDB
-//           .doc(id)
-//           .delete()
-//           .then(() => {
-//             const postDB = firestore.collection("post");
+const cancelLikeFB = (post_id, user_nick) => {
+    return function (dispatch, getState, { history }) {
+        // dispatch(cancelLike(post_id, user_nick))
+        const post = getState().post.list.find((l) => l.post_id === post_id);
+        const is_local = localStorage.getItem("is_login")
 
-//             const post = getState().post.list.find((l) => l.id === post_id);
+        const idx = getState().post.list.findIndex((p) => p.post_id === post_id)
+        const _like_count= getState().post.list[idx]
+        const like_count = parseInt(_like_count.like_count) - 1  
+        console.log(like_count)
 
-//             const decrement = firebase.firestore.FieldValue.increment(-1);
-
-//             postDB
-//               .doc(post_id)
-//               .update({ like_cnt: decrement })
-//               .then((_post) => {
-//                 dispatch(cancelLike(post_id, user_info.uid));
-//                 if (post) {
-//                   if (parseInt(post.like_cnt) === 0) {
-//                     return;
-//                   }
-//                   dispatch(
-//                     postActions.updatePost(post_id, {
-//                       like_cnt: parseInt(post.like_cnt) - 1,
-//                     })
-//                   );
-//                 }
-//               });
-//           });
-//       })
-//       .catch((error) => {
-//         console.log("좋아요를 취소할 포스트를 찾을수가 없어요ㅜㅜ");
-//       });
-//   };
-// };
+        instance.post(`api/unlike/${post_id}`,
+            {   like_count: like_count,
+                user_nick: user_nick,
+                post_id: post_id,
+            },
+            instance.defaults.headers.common["Authorization"] = `Bearer ${is_local}`
+        ).then((res) => {
+            console.log(res.data.response)
+            dispatch(cancelLike(post_id, user_nick))
+            if (post) {
+                dispatch(
+                  postActions.editPost(post_id, {
+                    like_count: parseInt(post.like_count) - 1,
+                  })
+                );
+              }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    };
+};
 
 export default handleActions(
     {
@@ -132,16 +125,16 @@ export default handleActions(
             produce(state, (draft) => {
                 draft.list[action.payload.post_id] = draft.list[
                     action.payload.post_id
-                ].filter((l) => l !== action.payload.user_id);
+                ].filter((l) => l !== action.payload.user_nick);
             }),
     },
     initialState
 );
 
 const actionCreators = {
-    //   getLikeFB,
+    getLikeFB,
     addLikeFB,
-    //   cancelLikeFB,
+    cancelLikeFB,
 };
 
 export { actionCreators };

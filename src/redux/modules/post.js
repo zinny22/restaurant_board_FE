@@ -69,6 +69,7 @@ const getPostFB = () => {
                         comment: v.comment,
                         location: v.location,
                         score: v.score,
+                        like_count: v.like_count
                     }
                     post_list.push(list)
                 })
@@ -135,7 +136,7 @@ export default handleActions(
         }),
         [EDIT_POST]: (state, action) => produce(state, (draft) => {
             let idx = draft.list.findIndex((p) => p.post_id === action.payload.post_id)
-            draft.list[idx] = { ...draft.list[idx], ...action.payload.post }
+            draft.list[idx] = { ...draft.list[idx], ...action.payload.post, ...action.payload.like_count }
         }),
         [GET_ONE_POST]: (state, action) => produce(state, (draft)=>{
             draft.detail=action.payload.post

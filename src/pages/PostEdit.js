@@ -20,7 +20,7 @@ const PostEdit = (props) => {
 
     const post = useSelector((state)=>state.post.detail)
     
-    const [title, setTitle] = React.useState(post? post.title:"");
+    const [title, setTitle] = React.useState(post?post.title:"");
     const [location, setLocation] = React.useState(post?post.location:"");
     const [comment, setComment] = React.useState(post?post.comment:"");
 

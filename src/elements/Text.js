@@ -8,7 +8,7 @@ const Text = (props) => {
   
   
   return (
-    <P {...styles}>
+    <P {...styles} >
       {children}
     </P>
   )
@@ -23,6 +23,7 @@ Text.defaultProps = {
   size: "14px",
   center: false,
   margin: false,
+  
 };
 
 const P = styled.p`
