@@ -41,10 +41,10 @@ const Post = (props) => {
                     <Text center size="150%">📍{title}</Text>
 
                     <div style={{ display: "flex", alignItems: "center", flexDirection: "row", }}>
-                        <div style={{ flexShrink: "0" , fontSize:"13px", color:"grey", marginRight:"1px"}}>
+                        <div style={{ flexShrink: "0" , fontSize:"14px", color:"grey", marginRight:"1px"}}>
                         {like_count}
                         </div>
-                        <div style={{ flexShrink: "0" }}>
+                        <div style={{ flexShrink: "0"}}>
                         <HeartButton post_id={post_id} />
                         </div>
                         <Grid is_end>

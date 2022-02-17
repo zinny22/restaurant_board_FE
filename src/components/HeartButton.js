@@ -55,7 +55,8 @@ const HeartButton = (props) => {
 };
 
 const styles = {
-    padding: "0px",
+   fontSize:"20px"
+    
 };
 
 export default HeartButton;
