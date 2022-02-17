@@ -1,6 +1,6 @@
 import React from "react";
-import { useDispatch} from "react-redux";
-import {Grid, Image,Button,Text} from "../elements/Index"
+import { useDispatch } from "react-redux";
+import { Grid, Image, Button, Text } from "../elements/Index"
 import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as likeActions } from "../redux/modules/like";
 import { history } from "../redux/configureStore";
@@ -9,7 +9,8 @@ import styled from "styled-components";
 import StarMain from "./StarMain";
 import MenuMain from "./MenuMain";
 import HeartButton from "./HeartButton";
-const Post =(props)=>{
+import { fontSize } from "@mui/system";
+const Post = (props) => {
     const dispatch = useDispatch();
     const user_nick = props.user_nick
     const title = props.title
@@ -20,9 +21,9 @@ const Post =(props)=>{
 
     React.useEffect(() => {
         dispatch(likeActions.getLikeFB(post_id))
-     }, []);
-   
-    return(
+    }, []);
+
+    return (
         <React.Fragment>
             <Cards>
                 <TextWrap>
@@ -32,23 +33,29 @@ const Post =(props)=>{
                     </Btn> */}
                     <Nick>
                         <Text size="120%">{user_nick}</Text>
-                        <div style={{display:"flex", alignItems:"center", marginLeft:"6px"}}>
-                            <Text color ="gray">{createDate}</Text>
-                            {props.is_me && <MenuMain post_id={props.post_id}/>}
+                        <div style={{ display: "flex", alignItems: "center", marginLeft: "6px" }}>
+                            <Text color="gray">{createDate}</Text>
+                            {props.is_me && <MenuMain post_id={props.post_id} />}
                         </div>
                     </Nick>
                     <Text center size="150%">📍{title}</Text>
-                    <Grid is_flex>
-                     <div style={{flexShrink:"0"}}>
-                     {like_count}
-                     </div>
-                    <HeartButton post_id={post_id}/>
-                    <StarMain score={score}/>
-                    </Grid>
+
+                    <div style={{ display: "flex", alignItems: "center", flexDirection: "row", }}>
+                        <div style={{ flexShrink: "0" , fontSize:"13px", color:"grey", marginRight:"1px"}}>
+                        {like_count}
+                        </div>
+                        <div style={{ flexShrink: "0" }}>
+                        <HeartButton post_id={post_id} />
+                        </div>
+                        <Grid is_end>
+                        <StarMain score={score} />
+                        </Grid>
+                    </div>
+               
                 </TextWrap>
-                <div onClick ={()=>{history.push(`/getpost/${props.post_id}`)}}>
+                <div onClick={() => { history.push(`/getpost/${props.post_id}`) }}>
                     <Img>
-                    <Image src={props.image_url}/>
+                        <Image src={props.image_url} />
                     </Img>
                 </div>
 
@@ -58,7 +65,7 @@ const Post =(props)=>{
 }
 
 Post.defaultProps = {
-    is_me :false,
+    is_me: false,
 }
 
 const Cards = styled.div`
