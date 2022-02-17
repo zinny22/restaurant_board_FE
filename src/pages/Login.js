@@ -43,7 +43,8 @@ const Login = () => {
             }}
           />
         </Grid>
-        <Grid margin="30px 0px 16px 0px" is_flex >
+       
+        <div style={{display:"flex" ,height:"45px", width:"100%"}} >
           <Button
             height="40px"
             text="로그인 하기"
@@ -59,7 +60,7 @@ const Login = () => {
             history.push("/Register");
           }}
         />
-        </Grid>
+        </div>
       </Grid>
     </React.Fragment>
   );
