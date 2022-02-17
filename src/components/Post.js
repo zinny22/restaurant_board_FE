@@ -27,10 +27,6 @@ const Post = (props) => {
         <React.Fragment>
             <Cards>
                 <TextWrap>
-                    {/* <Btn>
-                        {props.is_me && <Button padding ="5%" margin="0px 3px" _onClick={()=>{history.push(`/editpost/${props.post_id}`)}} text="수정"/>}
-                        {props.is_me && <Button padding ="5%"_onClick={()=>{dispatch(postActions.deletePostFB(props.post_id))}} text="삭제"/>}
-                    </Btn> */}
                     <Nick>
                         <Text size="120%">{user_nick}</Text>
                         <div style={{ display: "flex", alignItems: "center", marginLeft: "6px" }}>
