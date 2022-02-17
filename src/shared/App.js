@@ -37,10 +37,10 @@ function App() {
         <Route path="/addpost" exact component={PostWrite} />
         <Route path="/editpost/:postid" exact component={PostEdit} />
         <Route path="/getpost/:postid" exact component={PostDetail} />
-        <Footer />
+        
         {/* 수정을 할때는 write id값이 필요하다 */}
       </ConnectedRouter>
-
+      <Footer />
       {/* </Grid> */}
       {/* <Permit>
         <Button is_float text="+" _onClick={() => {history.push('/write');}}></Button>

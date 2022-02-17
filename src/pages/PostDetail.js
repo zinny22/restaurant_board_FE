@@ -48,7 +48,7 @@ const PostDetail = (props) => {
             <Text bold size="25px">{post.comment}</Text>
           </Grid>
           <Wrap>
-            <CommentWrite post ={post}/>
+            <CommentWrite post_id={post_id}/>
             <CommentList comment_list={comment_list} post={post_id} />
           </Wrap>
         </Grid>
