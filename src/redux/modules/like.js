@@ -48,8 +48,7 @@ const addLikeFB = (post_id, user_nick) => {
     return function (dispatch, getState, { history }) {
         const post = getState().post.list.find((l) => l.post_id === post_id);
         const is_local = localStorage.getItem("is_login")
-        
-       
+               
         const idx = getState().post.list.findIndex((p) => p.post_id === post_id)
         const _like_count= getState().post.list[idx]
         const like_count = parseInt(_like_count.like_count)+1   

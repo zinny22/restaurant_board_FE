@@ -5,18 +5,14 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 import moment from "moment";
 
 const CommentList =(props)=>{
-  console.log(props)
-
-  const post_id = props.post
-  console.log(post_id)
-  console.log(props.comment_list[post_id])
-  const comments = props.comment_list[post_id]
-
   const dispatch = useDispatch()
+  
+  const post_id = props.post
+  const comments = props.comment_list[post_id]
 
     return (
       <React.Fragment>
-          { comments&& comments.map((p,idx)=>{
+          { comments && comments.map((p,idx)=>{
             if(p.articleId._id ===post_id){
               return (<CommentItem key ={idx} {...p}/>)
             }
