@@ -23,7 +23,6 @@ Text.defaultProps = {
   size: "14px",
   center: false,
   margin: false,
-  
 };
 
 const P = styled.p`
