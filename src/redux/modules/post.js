@@ -69,6 +69,7 @@ const getPostFB = () => {
                         comment: v.comment,
                         location: v.location,
                         score: v.score,
+                        like_count: v.like_count
                     }
                     post_list.push(list)
                 })
